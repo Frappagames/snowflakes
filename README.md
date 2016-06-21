@@ -16,8 +16,8 @@ Mes outils :
 **Langage** : JAVA avec LibGDX  
 **Design** : GIMP / InkScape
 
-Apperçu :
----------
+Aperçu :
+--------
 
 ![Aperçu](https://raw.githubusercontent.com/neeftarah/icedrop/master/design_sources/preview.jpg)
 
@@ -30,7 +30,7 @@ Crédits :
 **Robert Brooks et Scott Brooks** :  [gamedeveloperstudio.com](http://www.gamedeveloperstudio.com) ([Licence](http://www.gamedeveloperstudio.com/license.php))
 
 
-### Police : 
+### Polices : 
 
 **Snowtop Caps** : *Dieter Steffmann* ([Police DAFONT](http://www.dafont.com/snowtop-caps.font))  
 **Frostbitten Wanker** : *Spork Thug Typography* ([Police DAFONT](http://www.dafont.com/frostbitten-wanker.font))  
