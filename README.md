@@ -27,10 +27,10 @@ Crédits :
 
 ### Design :
 
-**Robert Brooks et Scott Brooks** :  ![www.gamedeveloperstudio.com](www.gamedeveloperstudio.com) (![Licence](http://www.gamedeveloperstudio.com/license.php))
+**Robert Brooks et Scott Brooks** :  [gamedeveloperstudio.com](http://www.gamedeveloperstudio.com) ([Licence](http://www.gamedeveloperstudio.com/license.php))
 
 
 ### Police : 
 
-**Snowtop Caps** : *Dieter Steffmann* (![Police DAFONT](http://www.dafont.com/snowtop-caps.font))  
-**Frostbitten Wanker** : *Spork Thug Typography* (![Police DAFONT](http://www.dafont.com/frostbitten-wanker.font))  
+**Snowtop Caps** : *Dieter Steffmann* ([Police DAFONT](http://www.dafont.com/snowtop-caps.font))  
+**Frostbitten Wanker** : *Spork Thug Typography* ([Police DAFONT](http://www.dafont.com/frostbitten-wanker.font))  
