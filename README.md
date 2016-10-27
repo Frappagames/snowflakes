@@ -1,7 +1,7 @@
-IceDrop
-=======
+SnowFlakes
+==========
 
-IceDrop est un petit jeu où vous devrez récupérer un maximum de flocons de neige.  
+SnowFlakes est un petit jeu où vous devrez récupérer un maximum de flocons de neige.  
  
 
 Développé en JAVA avec LibGDX, il a pour plateformes cibles :
