@@ -1,35 +1,35 @@
 package com.frappagames.snowflakes;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.frappagames.snowflakes.Tools.Assets;
+import com.frappagames.snowflakes.Tools.Settings;
+import com.frappagames.snowflakes.Screens.SplashScreen;
 
-public class Snowflakes extends ApplicationAdapter {
-	SpriteBatch batch;
+public class Snowflakes extends Game {
+	public SpriteBatch batch;
 	Texture img;
+	public static final int WIDTH = 1280;
+	public static final int HEIGHT = 800;
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("background-8-5.jpg");
+		this.batch = new SpriteBatch();
+
+		Assets.load();
+		Settings.load();
+		setScreen(new SplashScreen(this));
 	}
 
 	@Override
 	public void render () {
-		Color clearColor = Color.valueOf("#C9EAF3FF");
-		Gdx.gl.glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		super.render();
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
+		Assets.dispose();
 	}
 }

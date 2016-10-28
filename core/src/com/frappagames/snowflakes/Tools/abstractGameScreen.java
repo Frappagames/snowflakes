@@ -2,6 +2,7 @@ package com.frappagames.snowflakes.Tools;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -9,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.frappagames.balloons.Balloons;
+import com.frappagames.snowflakes.Snowflakes;
 
 /**
  * Default game screen
@@ -18,17 +19,17 @@ import com.frappagames.balloons.Balloons;
 public abstract class abstractGameScreen implements Screen {
     protected final Viewport viewport;
     private final OrthographicCamera camera;
-    protected       Balloons           game;
+    protected Snowflakes game;
     protected Stage stage;
     protected Table table;
 
     private Texture background;
 
-    public abstractGameScreen(Balloons game) {
+    public abstractGameScreen(Snowflakes game) {
         this.game = game;
         camera = new OrthographicCamera();
-        camera.position.set(Balloons.width / 2, Balloons.height / 2, 0);
-        viewport = new FitViewport(Balloons.width, Balloons.height, camera);
+        camera.position.set(Snowflakes.WIDTH / 2, Snowflakes.HEIGHT / 2, 0);
+        viewport = new FitViewport(Snowflakes.WIDTH, Snowflakes.HEIGHT, camera);
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
 
@@ -44,7 +45,8 @@ public abstract class abstractGameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Color clearColor = Color.valueOf("#C9EAF3FF");
+        Gdx.gl.glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
