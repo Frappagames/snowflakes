@@ -48,8 +48,7 @@ public class Assets {
 //        souses20 = new Label.LabelStyle(souses20Font, Color.WHITE);
 
         // Load Textures
-
-//        itemsAtlas = new TextureAtlas(Gdx.files.internal("balloons.pack"));
+        itemsAtlas = new TextureAtlas(Gdx.files.internal("snowflakes.pack"));
 //
 //        play = new TextureRegionDrawable(itemsAtlas.findRegion("btnPlay"));
 
@@ -58,7 +57,7 @@ public class Assets {
         music.setLooping(true);
         music.setVolume(0.5f);
 
-        clickSound = Gdx.audio.newSound(Gdx.files.internal("sound-click.wav"));
+        clickSound = Gdx.audio.newSound(Gdx.files.internal("sound-click.mp3"));
     }
 
     public static void playSound(Sound sound) {
