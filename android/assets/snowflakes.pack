@@ -1,0 +1,75 @@
+
+snowflakes.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ground
+  rotate: false
+  xy: 1, 379
+  size: 1280, 128
+  orig: 1280, 128
+  offset: 0, 0
+  index: -1
+title
+  rotate: false
+  xy: 1, 230
+  size: 1002, 147
+  orig: 1002, 147
+  offset: 0, 0
+  index: -1
+btnPlay
+  rotate: false
+  xy: 1005, 144
+  size: 200, 233
+  orig: 200, 233
+  offset: 0, 0
+  index: -1
+btnPlayOver
+  rotate: false
+  xy: 1283, 274
+  size: 200, 233
+  orig: 200, 233
+  offset: 0, 0
+  index: -1
+btnMenu
+  rotate: false
+  xy: 1, 112
+  size: 100, 116
+  orig: 100, 116
+  offset: 0, 0
+  index: -1
+btnMenuOver
+  rotate: false
+  xy: 1485, 391
+  size: 100, 116
+  orig: 100, 116
+  offset: 0, 0
+  index: -1
+btnExitOver
+  rotate: false
+  xy: 1, 1
+  size: 100, 109
+  orig: 100, 109
+  offset: 0, 0
+  index: -1
+btnExit
+  rotate: false
+  xy: 103, 119
+  size: 100, 109
+  orig: 100, 109
+  offset: 0, 0
+  index: -1
+btnMusicOff
+  rotate: false
+  xy: 1485, 281
+  size: 100, 108
+  orig: 100, 108
+  offset: 0, 0
+  index: -1
+btnMusicOn
+  rotate: false
+  xy: 1587, 399
+  size: 100, 108
+  orig: 100, 108
+  offset: 0, 0
+  index: -1
