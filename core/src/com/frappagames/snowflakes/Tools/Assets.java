@@ -13,8 +13,8 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * Assets management class
- * <p/>
- * Created by jmoreau on 19/08/15.
+ *
+ * Created by Jérémy MOREAU on 19/08/15.
  */
 public class Assets {
     public static TextureRegionDrawable btnPlay, btnExit, btnMusicOn, btnMusicOff, btnMenu;

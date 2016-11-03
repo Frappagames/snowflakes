@@ -354,9 +354,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="-349.08912"
-     inkscape:cy="483.64557"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="-717.06258"
+     inkscape:cy="228.82187"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -388,7 +388,7 @@
        inkscape:export-filename="./btnPlay.png"
        inkscape:export-xdpi="70.312485"
        inkscape:export-ydpi="70.312485"
-       transform="translate(-237.58788,45.254834)">
+       transform="translate(-116.2754,-65.917566)">
       <g
          id="g7161"
          transform="matrix(2.1686909,0,0,2.1686909,-2076.5757,-930.12098)">
@@ -476,7 +476,8 @@
        id="g5276"
        inkscape:export-filename="./btnMusicOn.png"
        inkscape:export-xdpi="35.156242"
-       inkscape:export-ydpi="35.156242">
+       inkscape:export-ydpi="35.156242"
+       transform="translate(-30.023002,-446.00628)">
       <g
          id="g7145"
          transform="matrix(2.1686909,0,0,2.1686909,-2162.8281,-230.121)">
@@ -590,7 +591,8 @@
       </g>
     </g>
     <g
-       id="g4427">
+       id="g4427"
+       transform="translate(-21.906602,-359.36865)">
       <g
          id="g7145-2"
          transform="matrix(2.1686909,0,0,2.1686909,-2170.9445,61.06015)">
@@ -680,15 +682,13 @@
     </g>
     <g
        id="g5237"
-       transform="translate(-112,-28)"
+       transform="translate(-75.378266,-444.37766)"
        inkscape:export-filename="./btnExit.png"
        inkscape:export-xdpi="35.156242"
-       inkscape:export-ydpi="35.156242"
-       style="">
+       inkscape:export-ydpi="35.156242">
       <g
          id="g7233"
-         transform="matrix(2.1686909,0,0,2.1686909,-1070.1026,587.82052)"
-         style="">
+         transform="matrix(2.1686909,0,0,2.1686909,-1070.1026,587.82052)">
         <circle
            transform="matrix(0.65060197,0,0,0.65060197,104.53311,-509.00183)"
            style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:url(#radialGradient8585);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;marker:none;enable-background:accumulate"
@@ -710,12 +710,10 @@
       </g>
       <g
          transform="translate(4.1968203,5.0383494)"
-         id="g4848"
-         style="">
+         id="g4848">
         <g
            id="g7249"
-           transform="translate(-1179.7477,1033.829)"
-           style="">
+           transform="translate(-1179.7477,1033.829)">
           <path
              style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.64227642;fill:#ccbcbc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;marker:none;enable-background:accumulate"
              d="m 1055.5,-190.88781 c 8.75,6.5 14.5,10 26.75,7.5 12.25,-2.5 9.75,-6.75 9.75,-6.75 0,0 -0.5,5.75 9.5,8.5 10,2.75 10.75,-2.25 10.75,-2.25 0,0 2,7.5 9.25,7.75 7.25,0.25 11.5,-6.5 11.5,-6.5 0,0 -19.75,-18 -20.5,-19.25 -0.75,-1.25 -18,-1 -18,-1 0,0 -15,3.75 -16,3.5 -1,-0.25 -8,3.5 -9,3 -1,-0.5 -14,5.5 -14,5.5 z"
@@ -740,8 +738,7 @@
         </g>
         <g
            id="g7259"
-           transform="translate(-1179.7477,1033.829)"
-           style="">
+           transform="translate(-1179.7477,1033.829)">
           <path
              style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.64227642;fill:#ccbcbc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;marker:none;enable-background:accumulate"
              d="m 943.625,-177.63781 c 2.53988,9.38722 23.14927,9.27441 32.7019,3.86764 6.96772,-3.94372 6.6731,-13.74264 6.6731,-13.74264 0,0 16.125,0.75 25.875,-5.125 9.75,-5.875 6,-17.625 6.5,-17 0.5,0.625 4,1.5 11.25,-0.875 7.25,-2.375 6.375,-6 4.625,-8.25 -1.75,-2.25 -12.5,-1.875 -13.125,-1.875 -0.625,0 -33.125,11.25 -33.5,12 -0.375,0.75 -29,15.25 -29,15.25 l -2.625,11.75 z"
@@ -767,8 +764,7 @@
       </g>
       <g
          transform="translate(8.196798,5.0383571)"
-         id="g5214"
-         style="">
+         id="g5214">
         <path
            id="path7703-0"
            class="fil3"
@@ -831,7 +827,8 @@
        id="g4469"
        inkscape:export-xdpi="70.312477"
        inkscape:export-ydpi="70.312477"
-       inkscape:export-filename="./btnPlayOver.png">
+       inkscape:export-filename="./btnPlayOver.png"
+       transform="translate(370.52395,-75.646413)">
       <g
          id="g7161-0"
          transform="matrix(2.1686909,0,0,2.1686909,-1991.0967,-903.42157)">
@@ -919,7 +916,8 @@
     <g
        id="g4409"
        inkscape:export-xdpi="35"
-       inkscape:export-ydpi="35">
+       inkscape:export-ydpi="35"
+       transform="translate(239.24475,-330.07428)">
       <g
          id="g7145-2-8"
          transform="matrix(2.1686909,0,0,2.1686909,-1859.8175,48.736295)">
@@ -1012,7 +1010,8 @@
     <g
        id="g4445"
        inkscape:export-xdpi="35"
-       inkscape:export-ydpi="35">
+       inkscape:export-ydpi="35"
+       transform="translate(-618.01132,82.024387)">
       <g
          id="g7233-3"
          transform="matrix(2.1686909,0,0,2.1686909,-797.827,433.58035)">
@@ -1140,7 +1139,8 @@
        id="g4952"
        inkscape:export-filename="./btnMenuOver.png"
        inkscape:export-xdpi="35"
-       inkscape:export-ydpi="35">
+       inkscape:export-ydpi="35"
+       transform="translate(-619.42553,263.52221)">
       <g
          id="g4704">
         <circle
@@ -1374,7 +1374,8 @@
        id="g4906"
        inkscape:export-filename="./btnMenu.png"
        inkscape:export-xdpi="35"
-       inkscape:export-ydpi="35">
+       inkscape:export-ydpi="35"
+       transform="translate(-240.4163,-82.960108)">
       <g
          id="g4704-9"
          transform="translate(-388.90873,7.071069)">

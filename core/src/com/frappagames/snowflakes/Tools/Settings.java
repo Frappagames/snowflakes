@@ -8,7 +8,7 @@ import com.badlogic.gdx.Preferences;
  *
  * Store sounds and music preferences
  *
- * Created by jmoreau on 19/08/15.
+ * Created by Jérémy MOREAU on 19/08/15.
  */
 public class Settings {
     public  static boolean     soundEnabled;

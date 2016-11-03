@@ -4,11 +4,12 @@ import com.frappagames.snowflakes.Snowflakes;
 import com.frappagames.snowflakes.Tools.abstractGameScreen;
 
 /**
- * Created by gfp on 03/11/16.
+ * Game class
+ *
+ * Created by Jérémy MOREAU on 14/08/15.
  */
-
-public class GameScreen extends abstractGameScreen {
-    public GameScreen(Snowflakes game) {
+class GameScreen extends abstractGameScreen {
+    GameScreen(Snowflakes game) {
         super(game);
     }
 }

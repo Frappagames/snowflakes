@@ -13,7 +13,7 @@ import com.frappagames.snowflakes.Snowflakes;
 /**
  * Splash screen for Frappagames
  *
- * Created by jmoreau on 14/08/15.
+ * Created by Jérémy MOREAU on 14/08/15.
  */
 public class SplashScreen implements Screen {
     private final Snowflakes game;

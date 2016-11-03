@@ -14,10 +14,10 @@ import com.frappagames.snowflakes.Tools.abstractGameScreen;
 /**
  * Main menu class for the game
  *
- * Created by jmoreau on 14/08/15.
+ * Created by Jérémy MOREAU on 14/08/15.
  */
-public class MenuScreen extends abstractGameScreen {
-    public MenuScreen(final Snowflakes gameApp) {
+class MenuScreen extends abstractGameScreen {
+    MenuScreen(final Snowflakes gameApp) {
         super(gameApp);
 
         Image title  = new Image(Assets.title);
