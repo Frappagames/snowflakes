@@ -20,7 +20,7 @@ import com.frappagames.snowflakes.Snowflakes;
 public abstract class abstractGameScreen implements Screen {
     protected final Viewport viewport;
     private final OrthographicCamera camera;
-    private final ParticleEffect snowEffect;
+    private ParticleEffect snowEffect;
     protected Snowflakes game;
     protected Stage stage;
     protected Table table;
@@ -99,5 +99,6 @@ public abstract class abstractGameScreen implements Screen {
     public void dispose() {
         background.dispose();
         stage.dispose();
+        snowEffect.dispose();
     }
 }
