@@ -13,29 +13,14 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * Assets management class
- * <p/>
- * Created by jmoreau on 19/08/15.
+ *
+ * Created by Jérémy MOREAU on 19/08/15.
  */
 public class Assets {
-    public static TextureRegionDrawable play;
-    public static TextureRegionDrawable playOver;
-    public static TextureRegionDrawable exit;
-    public static TextureRegionDrawable exitOver;
-    public static TextureRegionDrawable soundOn;
-    public static TextureRegionDrawable soundOff;
-    public static TextureRegionDrawable musicOn;
-    public static TextureRegionDrawable musicOff;
+    public static TextureRegionDrawable btnPlay, btnExit, btnMusicOn, btnMusicOff, btnMenu;
+    public static TextureRegionDrawable btnPlayOver, btnExitOver, btnMenuOver;
+    public static TextureRegionDrawable snowflake, title, ground, btnScore;
 
-    public static TextureRegionDrawable scoreBackground;
-    public static TextureRegion smallStar;
-    public static TextureRegion bigStar;
-    public static TextureRegion cocarde;
-    public static TextureRegionDrawable home;
-    public static TextureRegionDrawable homeOver;
-    public static TextureRegionDrawable replay;
-    public static TextureRegionDrawable replayOver;
-
-    public static Array<TextureRegion> balloonsTextures;
     public static Sound clickSound;
     public static Music music;
     private static TextureAtlas itemsAtlas;
@@ -48,9 +33,20 @@ public class Assets {
 //        souses20 = new Label.LabelStyle(souses20Font, Color.WHITE);
 
         // Load Textures
-        itemsAtlas = new TextureAtlas(Gdx.files.internal("snowflakes.pack"));
-//
-//        play = new TextureRegionDrawable(itemsAtlas.findRegion("btnPlay"));
+        itemsAtlas  = new TextureAtlas(Gdx.files.internal("snowflakes.pack"));
+
+        title       = new TextureRegionDrawable(itemsAtlas.findRegion("title"));
+        ground      = new TextureRegionDrawable(itemsAtlas.findRegion("ground"));
+        snowflake   = new TextureRegionDrawable(itemsAtlas.findRegion("flocon"));
+        btnPlay     = new TextureRegionDrawable(itemsAtlas.findRegion("btnPlay"));
+        btnExit     = new TextureRegionDrawable(itemsAtlas.findRegion("btnExit"));
+        btnMenu     = new TextureRegionDrawable(itemsAtlas.findRegion("btnMenu"));
+        btnScore     = new TextureRegionDrawable(itemsAtlas.findRegion("btnScore"));
+        btnPlayOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnPlayOver"));
+        btnExitOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnExitOver"));
+        btnMenuOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnMenuOver"));
+        btnMusicOn  = new TextureRegionDrawable(itemsAtlas.findRegion("btnMusicOn"));
+        btnMusicOff = new TextureRegionDrawable(itemsAtlas.findRegion("btnMusicOff"));
 
         // Load Music and sounds
         music = Gdx.audio.newMusic(Gdx.files.internal("music.ogg"));

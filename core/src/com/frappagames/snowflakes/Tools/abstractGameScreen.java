@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -19,6 +20,7 @@ import com.frappagames.snowflakes.Snowflakes;
 public abstract class abstractGameScreen implements Screen {
     protected final Viewport viewport;
     private final OrthographicCamera camera;
+    private ParticleEffect snowEffect;
     protected Snowflakes game;
     protected Stage stage;
     protected Table table;
@@ -36,6 +38,10 @@ public abstract class abstractGameScreen implements Screen {
         table = new Table();
         table.setFillParent(true);
         stage.addActor(table);
+
+        snowEffect = new ParticleEffect();
+        snowEffect.load(Gdx.files.internal("snowflakes-effect.fx"), Gdx.files.internal(""));
+        snowEffect.setPosition(0, Snowflakes.HEIGHT);
     }
 
     @Override
@@ -53,6 +59,7 @@ public abstract class abstractGameScreen implements Screen {
 
         game.batch.begin();
         game.batch.draw(background, 0, 0);
+        snowEffect.draw(game.batch, delta);
         game.batch.end();
         stage.act(delta);
         stage.draw();
@@ -92,5 +99,6 @@ public abstract class abstractGameScreen implements Screen {
     public void dispose() {
         background.dispose();
         stage.dispose();
+        snowEffect.dispose();
     }
 }

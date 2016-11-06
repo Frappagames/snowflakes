@@ -1,7 +1,6 @@
 package com.frappagames.snowflakes;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.frappagames.snowflakes.Tools.Assets;
 import com.frappagames.snowflakes.Tools.Settings;
@@ -9,7 +8,6 @@ import com.frappagames.snowflakes.Screens.SplashScreen;
 
 public class Snowflakes extends Game {
 	public SpriteBatch batch;
-	Texture img;
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 800;
 	

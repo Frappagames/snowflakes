@@ -1,0 +1,89 @@
+
+snowflakes.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ground
+  rotate: false
+  xy: 1, 150
+  size: 1280, 100
+  orig: 1280, 100
+  offset: 0, 0
+  index: -1
+title
+  rotate: false
+  xy: 1, 1
+  size: 1002, 147
+  orig: 1002, 147
+  offset: 0, 0
+  index: -1
+btnPlay
+  rotate: false
+  xy: 1283, 17
+  size: 200, 233
+  orig: 200, 233
+  offset: 0, 0
+  index: -1
+btnPlayOver
+  rotate: false
+  xy: 1485, 17
+  size: 200, 233
+  orig: 200, 233
+  offset: 0, 0
+  index: -1
+btnExitOver
+  rotate: false
+  xy: 1005, 39
+  size: 100, 109
+  orig: 100, 109
+  offset: 0, 0
+  index: -1
+btnExit
+  rotate: false
+  xy: 1687, 141
+  size: 100, 109
+  orig: 100, 109
+  offset: 0, 0
+  index: -1
+btnMusicOff
+  rotate: false
+  xy: 1107, 40
+  size: 100, 108
+  orig: 100, 108
+  offset: 0, 0
+  index: -1
+btnMusicOn
+  rotate: false
+  xy: 1687, 31
+  size: 100, 108
+  orig: 100, 108
+  offset: 0, 0
+  index: -1
+btnScore
+  rotate: false
+  xy: 1789, 191
+  size: 145, 59
+  orig: 145, 59
+  offset: 0, 0
+  index: -1
+flocon
+  rotate: false
+  xy: 1209, 84
+  size: 56, 64
+  orig: 56, 64
+  offset: 0, 0
+  index: -1
+btnMenu
+  rotate: false
+  xy: 1789, 125
+  size: 55, 64
+  orig: 55, 64
+  offset: 0, 0
+  index: -1
+btnMenuOver
+  rotate: false
+  xy: 1789, 59
+  size: 55, 64
+  orig: 55, 64
+  offset: 0, 0
+  index: -1
