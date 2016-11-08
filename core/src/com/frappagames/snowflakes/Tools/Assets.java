@@ -25,12 +25,12 @@ public class Assets {
     public static Music music;
     private static TextureAtlas itemsAtlas;
 
-    public static Label.LabelStyle gameFont;
+    public static Label.LabelStyle fontScore;
 
     public static void load() {
         //Fonts
-//        BitmapFont souses20Font = new BitmapFont(Gdx.files.internal("souses-20.fnt"), false);
-//        souses20 = new Label.LabelStyle(souses20Font, Color.WHITE);
+        BitmapFont souses20Font = new BitmapFont(Gdx.files.internal("fontScore.fnt"), false);
+        fontScore = new Label.LabelStyle(souses20Font, Color.WHITE);
 
         // Load Textures
         itemsAtlas  = new TextureAtlas(Gdx.files.internal("snowflakes.pack"));
