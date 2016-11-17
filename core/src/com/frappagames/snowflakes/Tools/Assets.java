@@ -19,7 +19,7 @@ import com.badlogic.gdx.utils.Array;
 public class Assets {
     public static TextureRegionDrawable btnPlay, btnExit, btnMusicOn, btnMusicOff, btnMenu;
     public static TextureRegionDrawable btnPlayOver, btnExitOver, btnMenuOver;
-    public static TextureRegionDrawable snowflake, title, ground, btnScore;
+    public static TextureRegionDrawable snowflake, title, ground, btnScore, droplet;
 
     public static Sound clickSound;
     public static Music music;
@@ -38,10 +38,11 @@ public class Assets {
         title       = new TextureRegionDrawable(itemsAtlas.findRegion("title"));
         ground      = new TextureRegionDrawable(itemsAtlas.findRegion("ground"));
         snowflake   = new TextureRegionDrawable(itemsAtlas.findRegion("flocon"));
+        droplet     = new TextureRegionDrawable(itemsAtlas.findRegion("droplet"));
         btnPlay     = new TextureRegionDrawable(itemsAtlas.findRegion("btnPlay"));
         btnExit     = new TextureRegionDrawable(itemsAtlas.findRegion("btnExit"));
         btnMenu     = new TextureRegionDrawable(itemsAtlas.findRegion("btnMenu"));
-        btnScore     = new TextureRegionDrawable(itemsAtlas.findRegion("btnScore"));
+        btnScore    = new TextureRegionDrawable(itemsAtlas.findRegion("btnScore"));
         btnPlayOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnPlayOver"));
         btnExitOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnExitOver"));
         btnMenuOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnMenuOver"));

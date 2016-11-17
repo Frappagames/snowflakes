@@ -8,6 +8,7 @@ import com.frappagames.snowflakes.Screens.SplashScreen;
 
 public class Snowflakes extends Game {
 	public static final int GROUND_HEIGHT = 96;
+	public static final int DROPLET_SPAWN_SPEED_MS = 3000;
 	public SpriteBatch batch;
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 800;

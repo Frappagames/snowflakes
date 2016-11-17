@@ -9,8 +9,9 @@ import com.frappagames.snowflakes.Snowflakes;
  */
 
 public class SnowFlake extends Rectangle {
+    public static final int DEFAULT_DROPLET_SPEED = 160;
+    public final static int DEFAULT_SPEED = 80;
     private final int speed;
-    private final static int DEFAULT_SPEED = 80;
     public final int width;
     public final int height;
 
