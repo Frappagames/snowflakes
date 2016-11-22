@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -20,6 +22,7 @@ public class Assets {
     public static TextureRegionDrawable btnPlay, btnExit, btnMusicOn, btnMusicOff, btnMenu;
     public static TextureRegionDrawable btnPlayOver, btnExitOver, btnMenuOver;
     public static TextureRegionDrawable snowflake, title, ground, btnScore, droplet;
+    public static Animation standAnimation, walkAnimation, jumpAnimation;
 
     public static Sound clickSound;
     public static Music music;
@@ -55,6 +58,46 @@ public class Assets {
         music.setVolume(0.5f);
 
         clickSound = Gdx.audio.newSound(Gdx.files.internal("sound-click.mp3"));
+
+        // Load animations
+
+        // Stand animation
+        Texture sheet;
+        sheet = new Texture(Gdx.files.internal("stand.png"));
+        TextureRegion[][] tmp = TextureRegion.split(sheet, sheet.getWidth()/4, sheet.getHeight()/2);
+        TextureRegion[] frames = new TextureRegion[8];
+        int index = 0;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 4; j++) {
+                frames[index++] = tmp[i][j];
+            }
+        }
+        standAnimation = new Animation(0.15f, frames);
+
+        // Walk animation
+        sheet = new Texture(Gdx.files.internal("walk.png"));
+        tmp = TextureRegion.split(sheet, sheet.getWidth()/4, sheet.getHeight()/3);
+        frames = new TextureRegion[12];
+        index = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 4; j++) {
+                frames[index++] = tmp[i][j];
+            }
+        }
+        walkAnimation = new Animation(0.01f, frames);
+
+
+        // Jump animation
+        sheet = new Texture(Gdx.files.internal("jump.png"));
+        tmp = TextureRegion.split(sheet, sheet.getWidth()/4, sheet.getHeight()/2);
+        frames = new TextureRegion[8];
+        index = 0;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 4; j++) {
+                frames[index++] = tmp[i][j];
+            }
+        }
+        jumpAnimation = new Animation(0.1f, frames);
     }
 
     public static void playSound(Sound sound) {

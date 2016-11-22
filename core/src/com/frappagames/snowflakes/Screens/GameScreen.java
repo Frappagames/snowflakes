@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.frappagames.snowflakes.Snowflakes;
 import com.frappagames.snowflakes.Tools.Assets;
+import com.frappagames.snowflakes.Tools.Settings;
 import com.frappagames.snowflakes.Tools.SnowFlake;
 import com.frappagames.snowflakes.Tools.abstractGameScreen;
 
@@ -52,11 +53,6 @@ class GameScreen extends abstractGameScreen {
     private Stage uiStage;
     private Rectangle monster;
 
-    private Animation       standAnimation;
-    private Animation       walkAnimation;
-    private Animation       jumpAnimation;
-    private TextureRegion   currentFrame;
-
     private float stateTime;
 
     GameScreen(final Snowflakes gameApp) {
@@ -69,6 +65,7 @@ class GameScreen extends abstractGameScreen {
         gameStartTime = TimeUtils.nanoTime();
         gameIsPlaying = true;
         monsterJump   = false;
+        stateTime = 0f;
 
         Label lblScore = new Label("0", Assets.fontScore);
         Image imgScore  = new Image(Assets.btnScore);
@@ -82,7 +79,7 @@ class GameScreen extends abstractGameScreen {
         stack.add(imgScore);
         stack.add(scoreTable);
 
-
+        // Scores ☼
         uiStage = new Stage(viewport);
         Gdx.input.setInputProcessor(uiStage);
         Table uiTable = new Table();
@@ -92,7 +89,7 @@ class GameScreen extends abstractGameScreen {
         uiTable.add(btnMenu).expand().top().right().pad(15, 0, 0, 15);
         uiTable.row();
 
-
+        // Bouton "Menu" ≡
         btnMenu.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 Assets.playSound(Assets.clickSound);
@@ -100,7 +97,7 @@ class GameScreen extends abstractGameScreen {
             }
         });
 
-        // create a Rectangle to logically represent the monster
+        // create a Rectangle to logically represent the monster ☻
         monster = new Rectangle();
         monster.width = 128;
         monster.height = 213;
@@ -110,45 +107,8 @@ class GameScreen extends abstractGameScreen {
         monsterRightImage = new Texture(Gdx.files.internal("monsterRight.png"));
         monsterDirection = DIRECTION.LEFT;
 
-        // Stand animation
-        Texture sheet;
-        sheet = new Texture(Gdx.files.internal("stand.png"));
-        TextureRegion[][] tmp = TextureRegion.split(sheet, sheet.getWidth()/4, sheet.getHeight()/2);
-        TextureRegion[] frames = new TextureRegion[8];
-        int index = 0;
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 4; j++) {
-                frames[index++] = tmp[i][j];
-            }
-        }
-        standAnimation = new Animation(0.15f, frames);
-
-        // Walk animation
-        sheet = new Texture(Gdx.files.internal("walk.png"));
-        tmp = TextureRegion.split(sheet, sheet.getWidth()/4, sheet.getHeight()/3);
-        frames = new TextureRegion[12];
-        index = 0;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 4; j++) {
-                frames[index++] = tmp[i][j];
-            }
-        }
-        walkAnimation = new Animation(0.01f, frames);
-
-
-        // Jump animation
-        sheet = new Texture(Gdx.files.internal("jump.png"));
-        tmp = TextureRegion.split(sheet, sheet.getWidth()/4, sheet.getHeight()/2);
-        frames = new TextureRegion[8];
-        index = 0;
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 4; j++) {
-                frames[index++] = tmp[i][j];
-            }
-        }
-        jumpAnimation = new Animation(0.1f, frames);
-
-        stateTime = 0f;
+        // Play Music ♫
+        if (Settings.soundEnabled) Assets.music.play();
     }
 
     @Override
@@ -184,6 +144,7 @@ class GameScreen extends abstractGameScreen {
             monsterDirection = DIRECTION.RIGHT;
         }
 
+        TextureRegion currentFrame;
         if (monsterJump) {
             monster.y += YSpeed;
             YSpeed -= FALL_SPEED;
@@ -192,11 +153,11 @@ class GameScreen extends abstractGameScreen {
                 monsterJump = false;
                 YSpeed = 0;
             }
-            currentFrame = jumpAnimation.getKeyFrame(stateTime, false);
+            currentFrame = Assets.jumpAnimation.getKeyFrame(stateTime, false);
         } else if(Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            currentFrame = walkAnimation.getKeyFrame(stateTime, true);
+            currentFrame = Assets.walkAnimation.getKeyFrame(stateTime, true);
         } else {
-            currentFrame = standAnimation.getKeyFrame(stateTime, true);
+            currentFrame = Assets.standAnimation.getKeyFrame(stateTime, true);
         }
 
         if (monsterDirection == DIRECTION.RIGHT && !currentFrame.isFlipX()) {
