@@ -3,6 +3,9 @@ package com.frappagames.snowflakes.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -46,9 +49,15 @@ class GameScreen extends abstractGameScreen {
     private long lastDropletSpawnTime;
     private final long gameStartTime;
     private final boolean gameIsPlaying;
-    private Table uiTable;
     private Stage uiStage;
     private Rectangle monster;
+
+    private Animation       standAnimation;
+    private Animation       walkAnimation;
+    private Animation       jumpAnimation;
+    private TextureRegion   currentFrame;
+
+    private float stateTime;
 
     GameScreen(final Snowflakes gameApp) {
         super(gameApp);
@@ -76,7 +85,7 @@ class GameScreen extends abstractGameScreen {
 
         uiStage = new Stage(viewport);
         Gdx.input.setInputProcessor(uiStage);
-        uiTable = new Table();
+        Table uiTable = new Table();
         uiTable.setFillParent(true);
         uiStage.addActor(uiTable);
         uiTable.add(stack).expand().top().left().pad(15, 15, 0, 0);
@@ -94,12 +103,52 @@ class GameScreen extends abstractGameScreen {
         // create a Rectangle to logically represent the monster
         monster = new Rectangle();
         monster.width = 128;
-        monster.height = 212;
+        monster.height = 213;
         monster.x = Snowflakes.WIDTH / 2 - monster.width / 2;
         monster.y = Snowflakes.GROUND_HEIGHT;
         monsterLeftImage = new Texture(Gdx.files.internal("monsterLeft.png"));
         monsterRightImage = new Texture(Gdx.files.internal("monsterRight.png"));
         monsterDirection = DIRECTION.LEFT;
+
+        // Stand animation
+        Texture sheet;
+        sheet = new Texture(Gdx.files.internal("stand.png"));
+        TextureRegion[][] tmp = TextureRegion.split(sheet, sheet.getWidth()/4, sheet.getHeight()/2);
+        TextureRegion[] frames = new TextureRegion[8];
+        int index = 0;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 4; j++) {
+                frames[index++] = tmp[i][j];
+            }
+        }
+        standAnimation = new Animation(0.15f, frames);
+
+        // Walk animation
+        sheet = new Texture(Gdx.files.internal("walk.png"));
+        tmp = TextureRegion.split(sheet, sheet.getWidth()/4, sheet.getHeight()/3);
+        frames = new TextureRegion[12];
+        index = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 4; j++) {
+                frames[index++] = tmp[i][j];
+            }
+        }
+        walkAnimation = new Animation(0.01f, frames);
+
+
+        // Jump animation
+        sheet = new Texture(Gdx.files.internal("jump.png"));
+        tmp = TextureRegion.split(sheet, sheet.getWidth()/4, sheet.getHeight()/2);
+        frames = new TextureRegion[8];
+        index = 0;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 4; j++) {
+                frames[index++] = tmp[i][j];
+            }
+        }
+        jumpAnimation = new Animation(0.1f, frames);
+
+        stateTime = 0f;
     }
 
     @Override
@@ -121,7 +170,6 @@ class GameScreen extends abstractGameScreen {
         }
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && monster.y == Snowflakes.GROUND_HEIGHT) {
-            monsterDirection = DIRECTION.RIGHT;
             monsterJump = true;
             YSpeed = JUMP_SPEED;
         }
@@ -144,7 +192,20 @@ class GameScreen extends abstractGameScreen {
                 monsterJump = false;
                 YSpeed = 0;
             }
+            currentFrame = jumpAnimation.getKeyFrame(stateTime, false);
+        } else if(Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            currentFrame = walkAnimation.getKeyFrame(stateTime, true);
+        } else {
+            currentFrame = standAnimation.getKeyFrame(stateTime, true);
         }
+
+        if (monsterDirection == DIRECTION.RIGHT && !currentFrame.isFlipX()) {
+            currentFrame.flip(true, false);
+        } else if (monsterDirection == DIRECTION.LEFT && currentFrame.isFlipX()) {
+            currentFrame.flip(true, false);
+        }
+
+        stateTime += Gdx.graphics.getDeltaTime();
 
         // make sure the monster stays within the screen bounds
         if(monster.x < 0) monster.x = 0;
@@ -189,12 +250,7 @@ class GameScreen extends abstractGameScreen {
             );
         }
 
-        game.batch.draw(
-                (monsterDirection == DIRECTION.LEFT) ? monsterLeftImage : monsterRightImage,
-                monster.x,
-                monster.y,
-                128, 212
-        );
+        game.batch.draw(currentFrame, monster.x, monster.y);
 
         game.batch.end();
 
