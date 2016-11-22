@@ -3,8 +3,8 @@ package com.frappagames.snowflakes.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -36,10 +36,9 @@ class GameScreen extends abstractGameScreen {
     private static final int JUMP_SPEED = 20;
     private static final int FALL_SPEED = 2;
     private final int MONSTER_SPEED = 600;
-    private final Texture monsterLeftImage;
-    private final Texture monsterRightImage;
     private boolean monsterJump;
     private int YSpeed;
+
 
     private enum DIRECTION {LEFT, RIGHT}
     private DIRECTION monsterDirection;
@@ -54,6 +53,10 @@ class GameScreen extends abstractGameScreen {
     private Rectangle monster;
 
     private float stateTime;
+
+    private ParticleEffectPool snowImpactEffectPool, dropletImpactEffectPool;
+    private Array<ParticleEffectPool.PooledEffect> snowImpactEffects, dropletImpactEffects;
+    private ParticleEffect snowImpactEffect, dropletImpactEffect;
 
     GameScreen(final Snowflakes gameApp) {
         super(gameApp);
@@ -103,9 +106,19 @@ class GameScreen extends abstractGameScreen {
         monster.height = 213;
         monster.x = Snowflakes.WIDTH / 2 - monster.width / 2;
         monster.y = Snowflakes.GROUND_HEIGHT;
-        monsterLeftImage = new Texture(Gdx.files.internal("monsterLeft.png"));
-        monsterRightImage = new Texture(Gdx.files.internal("monsterRight.png"));
         monsterDirection = DIRECTION.LEFT;
+
+        // Snow Impact Effects
+        snowImpactEffects = new Array<ParticleEffectPool.PooledEffect>();
+        snowImpactEffect = new ParticleEffect();
+        snowImpactEffect.load(Gdx.files.internal("snowImpact.fx"), Gdx.files.internal(""));
+        snowImpactEffectPool = new ParticleEffectPool(snowImpactEffect, 0, 10);
+
+        // Droplet Impact Effects
+        dropletImpactEffects = new Array<ParticleEffectPool.PooledEffect>();
+        dropletImpactEffect = new ParticleEffect();
+        dropletImpactEffect.load(Gdx.files.internal("dropletImpact.fx"), Gdx.files.internal(""));
+        dropletImpactEffectPool = new ParticleEffectPool(dropletImpactEffect, 0, 10);
 
         // Play Music ♫
         if (Settings.soundEnabled) Assets.music.play();
@@ -178,7 +191,15 @@ class GameScreen extends abstractGameScreen {
             SnowFlake snowFlake = iter.next();
             snowFlake.y -= snowFlake.getSpeed() * Gdx.graphics.getDeltaTime();
 
-            if (snowFlake.y < Snowflakes.GROUND_HEIGHT) iter.remove();
+            if (snowFlake.y < Snowflakes.GROUND_HEIGHT)
+            {
+                iter.remove();
+
+                // Add effect
+                ParticleEffectPool.PooledEffect effect = snowImpactEffectPool.obtain();
+                effect.setPosition(snowFlake.x + snowFlake.width / 2, snowFlake.y);
+                snowImpactEffects.add(effect);
+            }
         }
 
         Iterator<Rectangle> iter2 = droplets.iterator();
@@ -186,7 +207,14 @@ class GameScreen extends abstractGameScreen {
             Rectangle rect = iter2.next();
             rect.y -= SnowFlake.DEFAULT_DROPLET_SPEED * Gdx.graphics.getDeltaTime();
 
-            if (rect.y < Snowflakes.GROUND_HEIGHT) iter2.remove();
+            if (rect.y < Snowflakes.GROUND_HEIGHT) {
+                iter2.remove();
+
+                // Add effect
+                ParticleEffectPool.PooledEffect effect = dropletImpactEffectPool.obtain();
+                effect.setPosition(rect.x + rect.width / 2, rect.y);
+                dropletImpactEffects.add(effect);
+            }
         }
 
         game.batch.begin();
@@ -203,6 +231,15 @@ class GameScreen extends abstractGameScreen {
             );
         }
 
+        for (int i = snowImpactEffects.size - 1; i >= 0; i--) {
+            ParticleEffectPool.PooledEffect effect = snowImpactEffects.get(i);
+            effect.draw(game.batch, delta);
+            if (effect.isComplete()) {
+                effect.free();
+                snowImpactEffects.removeValue(effect, true);
+            }
+        }
+
         for (Rectangle drop : droplets) {
             game.batch.draw(
                     Assets.droplet.getRegion(),
@@ -211,7 +248,17 @@ class GameScreen extends abstractGameScreen {
             );
         }
 
+        for (int i = dropletImpactEffects.size - 1; i >= 0; i--) {
+            ParticleEffectPool.PooledEffect effect = dropletImpactEffects.get(i);
+            effect.draw(game.batch, delta);
+            if (effect.isComplete()) {
+                effect.free();
+                dropletImpactEffects.removeValue(effect, true);
+            }
+        }
+
         game.batch.draw(currentFrame, monster.x, monster.y);
+
 
         game.batch.end();
 
