@@ -2,7 +2,7 @@ package com.frappagames.snowflakes.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -36,6 +36,7 @@ class GameScreen extends abstractGameScreen {
     private static final int JUMP_SPEED = 20;
     private static final int FALL_SPEED = 2;
     private final int MONSTER_SPEED = 600;
+    private final float[] dropletsColors;
     private boolean monsterJump;
     private int YSpeed;
 
@@ -69,6 +70,7 @@ class GameScreen extends abstractGameScreen {
         gameIsPlaying = true;
         monsterJump   = false;
         stateTime = 0f;
+        dropletsColors = new float[3];
 
         Label lblScore = new Label("0", Assets.fontScore);
         Image imgScore  = new Image(Assets.btnScore);
@@ -115,6 +117,11 @@ class GameScreen extends abstractGameScreen {
         snowImpactEffectPool = new ParticleEffectPool(snowImpactEffect, 0, 10);
 
         // Droplet Impact Effects
+        Color color = Color.valueOf("#78ACFFFF");
+        dropletsColors[0] = color.r;
+        dropletsColors[1] = color.g;
+        dropletsColors[2] = color.b;
+
         dropletImpactEffects = new Array<ParticleEffectPool.PooledEffect>();
         dropletImpactEffect = new ParticleEffect();
         dropletImpactEffect.load(Gdx.files.internal("dropletImpact.fx"), Gdx.files.internal(""));
@@ -213,6 +220,7 @@ class GameScreen extends abstractGameScreen {
                 // Add effect
                 ParticleEffectPool.PooledEffect effect = dropletImpactEffectPool.obtain();
                 effect.setPosition(rect.x + rect.width / 2, rect.y);
+                effect.getEmitters().get(0).getTint().setColors(dropletsColors);
                 dropletImpactEffects.add(effect);
             }
         }

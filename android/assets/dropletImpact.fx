@@ -60,10 +60,10 @@ scaling0: 1.0
 timelineCount: 1
 timeline0: 0.0
 - Scale - 
-lowMin: 8.0
-lowMax: 16.0
-highMin: 8.0
-highMax: 32.0
+lowMin: 4.0
+lowMax: 8.0
+highMin: 4.0
+highMax: 16.0
 relative: false
 scalingCount: 3
 scaling0: 1.0
@@ -103,10 +103,10 @@ timeline0: 0.0
 timeline1: 1.0
 - Rotation - 
 active: true
-lowMin: -90.0
-lowMax: 90.0
-highMin: -90.0
-highMax: 90.0
+lowMin: 0.0
+lowMax: 0.0
+highMin: 0.0
+highMax: 0.0
 relative: true
 scalingCount: 2
 scaling0: 0.0
@@ -128,16 +128,12 @@ scaling0: 1.0
 timelineCount: 1
 timeline0: 0.0
 - Tint - 
-colorsCount: 6
-colors0: 1.0
-colors1: 1.0
+colorsCount: 3
+colors0: 0.47058824
+colors1: 0.6745098
 colors2: 1.0
-colors3: 1.0
-colors4: 1.0
-colors5: 1.0
-timelineCount: 2
+timelineCount: 1
 timeline0: 0.0
-timeline1: 1.0
 - Transparency - 
 lowMin: 0.0
 lowMax: 0.0
@@ -162,4 +158,4 @@ additive: false
 behind: false
 premultipliedAlpha: false
 - Image Path -
-flocon.png
+bubble.png
