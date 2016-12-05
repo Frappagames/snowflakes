@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -58,6 +59,9 @@ class GameScreen extends abstractGameScreen {
     private ParticleEffectPool snowImpactEffectPool, dropletImpactEffectPool;
     private Array<ParticleEffectPool.PooledEffect> snowImpactEffects, dropletImpactEffects;
     private ParticleEffect snowImpactEffect, dropletImpactEffect;
+    private Rectangle bounds;
+
+    private Label lblScore;
 
     GameScreen(final Snowflakes gameApp) {
         super(gameApp);
@@ -72,7 +76,7 @@ class GameScreen extends abstractGameScreen {
         stateTime = 0f;
         dropletsColors = new float[3];
 
-        Label lblScore = new Label("0", Assets.fontScore);
+        lblScore = new Label("0", Assets.fontScore);
         Image imgScore  = new Image(Assets.btnScore);
         ImageButton btnMenu  = new ImageButton(Assets.btnMenu, Assets.btnMenuOver);
 
@@ -104,11 +108,12 @@ class GameScreen extends abstractGameScreen {
 
         // create a Rectangle to logically represent the monster ☻
         monster = new Rectangle();
-        monster.width = 128;
-        monster.height = 213;
+        monster.width = 256;
+        monster.height = 256;
         monster.x = Snowflakes.WIDTH / 2 - monster.width / 2;
         monster.y = Snowflakes.GROUND_HEIGHT;
         monsterDirection = DIRECTION.LEFT;
+        bounds = new Rectangle(monster.x + 68, monster.y, 120, 215);
 
         // Snow Impact Effects
         snowImpactEffects = new Array<ParticleEffectPool.PooledEffect>();
@@ -189,16 +194,16 @@ class GameScreen extends abstractGameScreen {
         stateTime += Gdx.graphics.getDeltaTime();
 
         // make sure the monster stays within the screen bounds
-        if(monster.x < 0) monster.x = 0;
-        if(monster.x > Snowflakes.WIDTH - monster.width) monster.x = Snowflakes.WIDTH - monster.width;
-
+        if(monster.x < -68) monster.x = -68;
+        if(monster.x > Snowflakes.WIDTH - monster.width + 68) monster.x = Snowflakes.WIDTH - monster.width + 68;
+        bounds.setPosition(monster.x + 68, monster.y);
 
         Iterator<SnowFlake> iter = snowFlakes.iterator();
         while (iter.hasNext()) {
             SnowFlake snowFlake = iter.next();
             snowFlake.y -= snowFlake.getSpeed() * Gdx.graphics.getDeltaTime();
 
-            if (snowFlake.y < Snowflakes.GROUND_HEIGHT)
+            if (snowFlake.y < Snowflakes.GROUND_HEIGHT || snowFlake.overlaps(bounds))
             {
                 iter.remove();
 
@@ -206,6 +211,10 @@ class GameScreen extends abstractGameScreen {
                 ParticleEffectPool.PooledEffect effect = snowImpactEffectPool.obtain();
                 effect.setPosition(snowFlake.x + snowFlake.width / 2, snowFlake.y);
                 snowImpactEffects.add(effect);
+
+                if (snowFlake.overlaps(bounds)) {
+                    lblScore.setText(String.valueOf(Integer.parseInt(lblScore.getText().toString()) + 10));
+                }
             }
         }
 
@@ -214,7 +223,7 @@ class GameScreen extends abstractGameScreen {
             Rectangle rect = iter2.next();
             rect.y -= SnowFlake.DEFAULT_DROPLET_SPEED * Gdx.graphics.getDeltaTime();
 
-            if (rect.y < Snowflakes.GROUND_HEIGHT) {
+            if (rect.y < Snowflakes.GROUND_HEIGHT || rect.overlaps(bounds)) {
                 iter2.remove();
 
                 // Add effect
@@ -222,6 +231,10 @@ class GameScreen extends abstractGameScreen {
                 effect.setPosition(rect.x + rect.width / 2, rect.y);
                 effect.getEmitters().get(0).getTint().setColors(dropletsColors);
                 dropletImpactEffects.add(effect);
+
+                if (rect.overlaps(bounds)) {
+                    lblScore.setText(String.valueOf(Integer.parseInt(lblScore.getText().toString()) - 3));
+                }
             }
         }
 
@@ -266,8 +279,6 @@ class GameScreen extends abstractGameScreen {
         }
 
         game.batch.draw(currentFrame, monster.x, monster.y);
-
-
         game.batch.end();
 
         uiStage.act(delta);

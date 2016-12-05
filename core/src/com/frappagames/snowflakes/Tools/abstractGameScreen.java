@@ -19,7 +19,7 @@ import com.frappagames.snowflakes.Snowflakes;
  */
 public abstract class abstractGameScreen implements Screen {
     protected final Viewport viewport;
-    private final OrthographicCamera camera;
+    public final OrthographicCamera camera;
     private ParticleEffect snowEffect;
     protected Snowflakes game;
     protected Stage stage;
