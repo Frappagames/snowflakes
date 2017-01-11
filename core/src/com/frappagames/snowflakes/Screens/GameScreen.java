@@ -278,7 +278,7 @@ class GameScreen extends abstractGameScreen {
             }
         }
 
-        game.batch.draw(currentFrame, monster.x, monster.y);
+        game.batch.draw(currentFrame, monster.x, monster.y - 6);
         game.batch.end();
 
         uiStage.act(delta);
