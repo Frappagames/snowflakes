@@ -201,15 +201,15 @@ class GameScreen extends abstractGameScreen {
         Iterator<SnowFlake> iter = snowFlakes.iterator();
         while (iter.hasNext()) {
             SnowFlake snowFlake = iter.next();
-            snowFlake.y -= snowFlake.getSpeed() * Gdx.graphics.getDeltaTime();
+            snowFlake.setY(snowFlake.getY() - snowFlake.getSpeed() * Gdx.graphics.getDeltaTime());
 
-            if (snowFlake.y < Snowflakes.GROUND_HEIGHT || snowFlake.overlaps(bounds))
+            if (snowFlake.getY() < Snowflakes.GROUND_HEIGHT || snowFlake.overlaps(bounds))
             {
                 iter.remove();
 
                 // Add effect
                 ParticleEffectPool.PooledEffect effect = snowImpactEffectPool.obtain();
-                effect.setPosition(snowFlake.x + snowFlake.width / 2, snowFlake.y);
+                effect.setPosition(snowFlake.getX() + snowFlake.width / 2, snowFlake.getY());
                 snowImpactEffects.add(effect);
 
                 if (snowFlake.overlaps(bounds)) {
@@ -264,7 +264,7 @@ class GameScreen extends abstractGameScreen {
         for (Rectangle drop : droplets) {
             game.batch.draw(
                     Assets.droplet.getRegion(),
-                    drop.x,
+                    drop.x - 13,
                     drop.y
             );
         }
@@ -288,8 +288,8 @@ class GameScreen extends abstractGameScreen {
     private void spawnDroplet() {
         Rectangle droplet = new Rectangle();
         droplet.setPosition(MathUtils.random(0, Snowflakes.WIDTH - 64), Snowflakes.HEIGHT);
-        droplet.width = 64;
-        droplet.height = 64;
+        droplet.width = 42;
+        droplet.height = 66;
         droplets.add(droplet);
         lastDropletSpawnTime = TimeUtils.nanoTime();
     }
