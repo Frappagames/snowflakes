@@ -1,12 +1,12 @@
 package com.frappagames.snowflakes.Screens;
 
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -61,6 +61,8 @@ class GameScreen extends abstractGameScreen {
     private ParticleEffect snowImpactEffect, dropletImpactEffect;
     private Rectangle bounds;
 
+    private ImageButton btnJumpLeft, btnJumpRight, btnLeft, btnRight;
+
     private Label lblScore;
 
     GameScreen(final Snowflakes gameApp) {
@@ -79,6 +81,10 @@ class GameScreen extends abstractGameScreen {
         lblScore = new Label("0", Assets.fontScore);
         Image imgScore  = new Image(Assets.btnScore);
         ImageButton btnMenu  = new ImageButton(Assets.btnMenu, Assets.btnMenuOver);
+        btnJumpLeft  = new ImageButton(Assets.btnJump, Assets.btnJumpOver);
+        btnJumpRight  = new ImageButton(Assets.btnJump, Assets.btnJumpOver);
+        btnLeft  = new ImageButton(Assets.btnLeft, Assets.btnLeftOver);
+        btnRight  = new ImageButton(Assets.btnRight, Assets.btnRightOver);
 
         Table scoreTable = new Table();
         scoreTable.setFillParent(true);
@@ -96,7 +102,20 @@ class GameScreen extends abstractGameScreen {
         uiStage.addActor(uiTable);
         uiTable.add(stack).expand().top().left().pad(15, 15, 0, 0);
         uiTable.add(btnMenu).expand().top().right().pad(15, 0, 0, 15);
-        uiTable.row();
+
+        if (Gdx.app.getType() == ApplicationType.Android || Gdx.app.getType() == ApplicationType.iOS) {
+            Table controlTable = new Table();
+            controlTable.bottom();
+            controlTable.setFillParent(true);
+            controlTable.add(btnJumpLeft).pad(0, 15, 10, 0);
+            controlTable.add().expandX();
+            controlTable.add(btnJumpRight).pad(0, 0, 15, 10);
+            controlTable.row();
+            controlTable.add(btnLeft).pad(0, 15, 15, 0);
+            controlTable.add().expandX();
+            controlTable.add(btnRight).pad(0, 0, 15, 15);
+            uiStage.addActor(controlTable);
+        }
 
         // Bouton "Menu" ≡
         btnMenu.addListener(new ChangeListener() {
@@ -154,17 +173,18 @@ class GameScreen extends abstractGameScreen {
             }
         }
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && monster.y == Snowflakes.GROUND_HEIGHT) {
+        if((Gdx.input.isKeyPressed(Input.Keys.UP) || this.btnJumpLeft.isPressed() || this.btnJumpRight.isPressed())
+                && monster.y == Snowflakes.GROUND_HEIGHT) {
             monsterJump = true;
             YSpeed = JUMP_SPEED;
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) || this.btnLeft.isPressed()){
             monster.x -= this.MONSTER_SPEED * delta;
             monsterDirection = DIRECTION.LEFT;
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) || this.btnRight.isPressed()) {
             monster.x += this.MONSTER_SPEED * delta;
             monsterDirection = DIRECTION.RIGHT;
         }
@@ -179,7 +199,8 @@ class GameScreen extends abstractGameScreen {
                 YSpeed = 0;
             }
             currentFrame = Assets.jumpAnimation.getKeyFrame(stateTime, false);
-        } else if(Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        } else if(Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)
+                || this.btnLeft.isPressed() || this.btnRight.isPressed()) {
             currentFrame = Assets.walkAnimation.getKeyFrame(stateTime, true);
         } else {
             currentFrame = Assets.standAnimation.getKeyFrame(stateTime, true);

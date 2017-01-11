@@ -19,9 +19,9 @@ import com.badlogic.gdx.utils.Array;
  * Created by Jérémy MOREAU on 19/08/15.
  */
 public class Assets {
-    public static TextureRegionDrawable btnPlay, btnExit, btnMusicOn, btnMusicOff, btnMenu;
-    public static TextureRegionDrawable btnPlayOver, btnExitOver, btnMenuOver;
-    public static TextureRegionDrawable snowflake, title, ground, btnScore, droplet;
+    public static TextureRegionDrawable title, droplet,btnScore, snowflake,  ground,
+        btnPlay, btnPlayOver, btnExit, btnExitOver, btnMenu, btnMenuOver, btnMusicOn, btnMusicOff,
+        btnJump, btnJumpOver, btnLeft, btnLeftOver, btnRight, btnRightOver;
     public static Animation standAnimation, walkAnimation, jumpAnimation;
 
     public static Sound clickSound;
@@ -42,15 +42,28 @@ public class Assets {
         ground      = new TextureRegionDrawable(itemsAtlas.findRegion("ground"));
         snowflake   = new TextureRegionDrawable(itemsAtlas.findRegion("flocon"));
         droplet     = new TextureRegionDrawable(itemsAtlas.findRegion("droplet"));
-        btnPlay     = new TextureRegionDrawable(itemsAtlas.findRegion("btnPlay"));
-        btnExit     = new TextureRegionDrawable(itemsAtlas.findRegion("btnExit"));
-        btnMenu     = new TextureRegionDrawable(itemsAtlas.findRegion("btnMenu"));
         btnScore    = new TextureRegionDrawable(itemsAtlas.findRegion("btnScore"));
+
+        btnPlay     = new TextureRegionDrawable(itemsAtlas.findRegion("btnPlay"));
         btnPlayOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnPlayOver"));
+
+        btnExit     = new TextureRegionDrawable(itemsAtlas.findRegion("btnExit"));
         btnExitOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnExitOver"));
+
+        btnMenu     = new TextureRegionDrawable(itemsAtlas.findRegion("btnMenu"));
         btnMenuOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnMenuOver"));
+
         btnMusicOn  = new TextureRegionDrawable(itemsAtlas.findRegion("btnMusicOn"));
         btnMusicOff = new TextureRegionDrawable(itemsAtlas.findRegion("btnMusicOff"));
+
+        btnLeft     = new TextureRegionDrawable(itemsAtlas.findRegion("btnLeft"));
+        btnLeftOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnLeftOver"));
+
+        btnRight     = new TextureRegionDrawable(itemsAtlas.findRegion("btnRight"));
+        btnRightOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnRightOver"));
+
+        btnJump     = new TextureRegionDrawable(itemsAtlas.findRegion("btnJump"));
+        btnJumpOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnJumpOver"));
 
         // Load Music and sounds
         music = Gdx.audio.newMusic(Gdx.files.internal("music.ogg"));
