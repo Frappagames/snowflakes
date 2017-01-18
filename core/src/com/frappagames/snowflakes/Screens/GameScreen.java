@@ -40,6 +40,8 @@ class GameScreen extends abstractGameScreen {
     private final float[] dropletsColors;
     private boolean monsterJump;
     private int YSpeed;
+    private int currentSpawnSpeed;
+    private int currentDropletsSpeed;
 
 
     private enum DIRECTION {LEFT, RIGHT}
@@ -77,6 +79,8 @@ class GameScreen extends abstractGameScreen {
         monsterJump   = false;
         stateTime = 0f;
         dropletsColors = new float[3];
+        currentSpawnSpeed = Snowflakes.SPAWN_SPEED_MS;
+        currentDropletsSpeed = Snowflakes.DROPLET_SPAWN_SPEED_MS;
 
         lblScore = new Label("0", Assets.fontScore);
         Image imgScore  = new Image(Assets.btnScore);
@@ -160,15 +164,21 @@ class GameScreen extends abstractGameScreen {
         super.render(delta);
 
         // Reduce balloons spawning delay to add difficulty over time
-        double acceleration = Math.round((TimeUtils.nanoTime() - gameStartTime) / 130000000);
+        if (this.currentSpawnSpeed > Snowflakes.MAX_SPAWN_SPEED) {
+            this.currentSpawnSpeed = Snowflakes.SPAWN_SPEED_MS - Math.round((TimeUtils.nanoTime() - gameStartTime) / 130000000);
+        }
+        if (this.currentDropletsSpeed > Snowflakes.DROPLET_MAX_SPAWN_SPEED) {
+            this.currentDropletsSpeed = Snowflakes. DROPLET_SPAWN_SPEED_MS - Math.round((TimeUtils.nanoTime() - gameStartTime) / 130000000);
+        }
+
 
         // check if we need to create a new raindrop
         if (gameIsPlaying) {
-            if (TimeUtils.nanoTime() - lastSpawnTime > (Snowflakes.SPAWN_SPEED_MS - acceleration) * 1000000) {
+            if (TimeUtils.nanoTime() - lastSpawnTime > this.currentSpawnSpeed * 1000000L) {
                 spawnSnowFlake();
             }
 
-            if (TimeUtils.nanoTime() - lastDropletSpawnTime > (Snowflakes.DROPLET_SPAWN_SPEED_MS - acceleration) * 1000000L) {
+            if (TimeUtils.nanoTime() - lastDropletSpawnTime > this.currentDropletsSpeed * 1000000L) {
                 spawnDroplet();
             }
         }

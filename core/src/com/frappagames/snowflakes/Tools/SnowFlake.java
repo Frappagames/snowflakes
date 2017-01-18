@@ -17,7 +17,7 @@ public class SnowFlake extends Rectangle {
         super();
 
         this.speed = MathUtils.round(DEFAULT_SPEED * MathUtils.random(70, 130) / 100);
-        float scale = MathUtils.random(0.8f, 1f);
+        float scale = MathUtils.random(0.66f, 1f);
         this.setSize(
             MathUtils.round(Assets.snowflake.getRegion().getRegionWidth() * scale),
             MathUtils.round(Assets.snowflake.getRegion().getRegionHeight() * scale)

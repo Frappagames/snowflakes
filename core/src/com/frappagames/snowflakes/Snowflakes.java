@@ -8,12 +8,14 @@ import com.frappagames.snowflakes.Screens.SplashScreen;
 
 public class Snowflakes extends Game {
 	public static final int GROUND_HEIGHT = 96;
-	public static final int DROPLET_SPAWN_SPEED_MS = 3000;
+	public static final int DROPLET_SPAWN_SPEED_MS = 2250;
+	public static final int DROPLET_MAX_SPAWN_SPEED = 500;
 	public SpriteBatch batch;
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 800;
 	public static final int SPAWN_WIDTH = 1224;
-	public static final int SPAWN_SPEED_MS = 2000;
+	public static final int SPAWN_SPEED_MS = 1500;
+	public static final int MAX_SPAWN_SPEED = 300;
 	
 	@Override
 	public void create () {
