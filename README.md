@@ -19,7 +19,7 @@ Mes outils :
 Aperçu :
 --------
 
-![Aperçu](https://raw.githubusercontent.com/neeftarah/icedrop/master/design_sources/preview.jpg)
+![Aperçu](https://raw.githubusercontent.com/Frappagames/snowflakes/master/design_sources/preview.jpg)
 
 
 Crédits :
@@ -33,4 +33,3 @@ Crédits :
 ### Polices : 
 
 **Snowtop Caps** : *Dieter Steffmann* ([Police DAFONT](http://www.dafont.com/snowtop-caps.font))  
-**Frostbitten Wanker** : *Spork Thug Typography* ([Police DAFONT](http://www.dafont.com/frostbitten-wanker.font))  
