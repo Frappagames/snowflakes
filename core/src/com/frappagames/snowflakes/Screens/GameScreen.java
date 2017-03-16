@@ -86,9 +86,13 @@ class GameScreen extends abstractGameScreen {
         Image imgScore  = new Image(Assets.btnScore);
         ImageButton btnMenu  = new ImageButton(Assets.btnMenu, Assets.btnMenuOver);
         btnJumpLeft  = new ImageButton(Assets.btnJump, Assets.btnJumpOver);
+        btnJumpLeft.pad(0, 15, 0, 0);
         btnJumpRight  = new ImageButton(Assets.btnJump, Assets.btnJumpOver);
+        btnJumpRight.pad(0, 0, 0, 15);
         btnLeft  = new ImageButton(Assets.btnLeft, Assets.btnLeftOver);
+        btnLeft.pad(15, 15, 15, 0);
         btnRight  = new ImageButton(Assets.btnRight, Assets.btnRightOver);
+        btnRight.pad(15, 0, 15, 15);
 
         Table scoreTable = new Table();
         scoreTable.setFillParent(true);
@@ -111,13 +115,13 @@ class GameScreen extends abstractGameScreen {
             Table controlTable = new Table();
             controlTable.bottom();
             controlTable.setFillParent(true);
-            controlTable.add(btnJumpLeft).pad(0, 15, 10, 0);
+            controlTable.add(btnJumpLeft);
             controlTable.add().expandX();
-            controlTable.add(btnJumpRight).pad(0, 0, 15, 10);
+            controlTable.add(btnJumpRight);
             controlTable.row();
-            controlTable.add(btnLeft).pad(0, 15, 15, 0);
+            controlTable.add(btnLeft);
             controlTable.add().expandX();
-            controlTable.add(btnRight).pad(0, 0, 15, 15);
+            controlTable.add(btnRight);
             uiStage.addActor(controlTable);
         }
 
