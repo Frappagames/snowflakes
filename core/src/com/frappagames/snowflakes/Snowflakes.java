@@ -18,8 +18,6 @@ public class Snowflakes extends Game {
 	public static final int MAX_SPAWN_SPEED = 300;
 
 	/**
-	 * TODO : Paralax Montagne
-	 * TODO : Paralax flocons
 	 * TODO : Vies
 	 * TODO : game Over
 	 * TODO : Timer
