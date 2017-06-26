@@ -1,6 +1,7 @@
 package com.frappagames.snowflakes.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -59,5 +60,22 @@ class MenuScreen extends abstractGameScreen {
                 Gdx.app.exit();
             }
         });
+    }
+
+    @Override
+    public void render(float delta) {
+        super.render(delta);
+
+        // Exit game on ESCAPE
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            game.dispose();
+            Gdx.app.exit();
+        }
+
+        // Start new game on ENTER
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            Assets.playSound(Assets.clickSound);
+            game.setScreen(new GameScreen(game));
+        }
     }
 }

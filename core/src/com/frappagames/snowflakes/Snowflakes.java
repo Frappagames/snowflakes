@@ -16,7 +16,18 @@ public class Snowflakes extends Game {
 	public static final int SPAWN_WIDTH = 1224;
 	public static final int SPAWN_SPEED_MS = 1500;
 	public static final int MAX_SPAWN_SPEED = 300;
-	
+
+	/**
+	 * TODO : Paralax Montagne
+	 * TODO : Paralax flocons
+	 * TODO : Vies
+	 * TODO : game Over
+	 * TODO : Timer
+	 * TODO : Win screen
+	 * TODO : Best score
+	 * TODO : impact anim et son
+	 */
+
 	@Override
 	public void create () {
 		this.batch = new SpriteBatch();
@@ -33,7 +44,6 @@ public class Snowflakes extends Game {
 	
 	@Override
 	public void dispose () {
-		batch.dispose();
 		Assets.dispose();
 	}
 }

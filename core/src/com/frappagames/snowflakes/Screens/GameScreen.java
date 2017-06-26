@@ -203,6 +203,12 @@ class GameScreen extends abstractGameScreen {
             monsterDirection = DIRECTION.RIGHT;
         }
 
+        // Exit to game menu on ESCAPE
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            Assets.playSound(Assets.clickSound);
+            game.setScreen(new MenuScreen(game));
+        }
+
         TextureRegion currentFrame;
         if (monsterJump) {
             monster.y += YSpeed;
