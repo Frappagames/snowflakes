@@ -19,13 +19,13 @@ import com.frappagames.snowflakes.Snowflakes;
  */
 public abstract class abstractGameScreen implements Screen {
     protected final Viewport viewport;
-    public final OrthographicCamera camera;
-    private ParticleEffect snowEffect;
+    private final OrthographicCamera camera;
+    protected ParticleEffect snowEffect;
     protected Snowflakes game;
-    protected Stage stage;
+    private Stage stage;
     protected Table table;
 
-    private Texture background;
+    protected Texture background;
 
     public abstractGameScreen(Snowflakes game) {
         this.game = game;
@@ -49,6 +49,11 @@ public abstract class abstractGameScreen implements Screen {
 
     }
 
+    public void draw(float delta) {
+        stage.act(delta);
+        stage.draw();
+    }
+
     @Override
     public void render(float delta) {
         Color clearColor = Color.valueOf("#C9EAF3FF");
@@ -57,12 +62,7 @@ public abstract class abstractGameScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
-        game.batch.begin();
-        game.batch.draw(background, 0, 0);
-        snowEffect.draw(game.batch, delta);
-        game.batch.end();
-        stage.act(delta);
-        stage.draw();
+        this.draw(delta);
     }
 
     @Override

@@ -63,6 +63,16 @@ class MenuScreen extends abstractGameScreen {
     }
 
     @Override
+    public void draw(float delta) {
+        game.batch.begin();
+        game.batch.draw(background, 0, 0);
+        snowEffect.draw(game.batch, delta);
+        game.batch.end();
+
+        super.draw(delta);
+    }
+
+    @Override
     public void render(float delta) {
         super.render(delta);
 

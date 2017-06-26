@@ -36,7 +36,7 @@ active: false
 - X Offset - 
 active: true
 lowMin: 0.0
-lowMax: 1280.0
+lowMax: 1920.0
 highMin: 0.0
 highMax: 0.0
 relative: false

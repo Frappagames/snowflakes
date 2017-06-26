@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
+import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -280,6 +281,10 @@ class GameScreen extends abstractGameScreen {
         }
 
         game.batch.begin();
+        game.batch.draw(background, -(monster.x / 8) - 20, 0);
+        snowEffect.getEmitters().first().setAttached(true);
+        snowEffect.setPosition(-(monster.x / 12) - 20, Snowflakes.HEIGHT);
+        snowEffect.draw(game.batch, delta);
 
         game.batch.draw(Assets.ground.getRegion(), 0, 0);
 
@@ -318,6 +323,7 @@ class GameScreen extends abstractGameScreen {
                 dropletImpactEffects.removeValue(effect, true);
             }
         }
+
 
         game.batch.draw(currentFrame, monster.x, monster.y - 6);
         game.batch.end();
