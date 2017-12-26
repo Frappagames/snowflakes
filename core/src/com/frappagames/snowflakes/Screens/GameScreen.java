@@ -6,7 +6,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
-import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -37,17 +36,16 @@ import java.util.Iterator;
 class GameScreen extends abstractGameScreen {
     private static final int JUMP_SPEED = 20;
     private static final int FALL_SPEED = 2;
-    private final int MONSTER_SPEED = 600;
+    private static final int MONSTER_SPEED = 600;
+
+    private enum DIRECTION {LEFT, RIGHT}
+
     private final float[] dropletsColors;
     private boolean monsterJump;
     private int YSpeed;
     private int currentSpawnSpeed;
     private int currentDropletsSpeed;
-
-
-    private enum DIRECTION {LEFT, RIGHT}
     private DIRECTION monsterDirection;
-
     private Array<SnowFlake> snowFlakes;
     private Array<Rectangle> droplets;
     private long lastSpawnTime;
@@ -56,12 +54,9 @@ class GameScreen extends abstractGameScreen {
     private final boolean gameIsPlaying;
     private Stage uiStage;
     private Rectangle monster;
-
     private float stateTime;
-
     private ParticleEffectPool snowImpactEffectPool, dropletImpactEffectPool;
     private Array<ParticleEffectPool.PooledEffect> snowImpactEffects, dropletImpactEffects;
-    private ParticleEffect snowImpactEffect, dropletImpactEffect;
     private Rectangle bounds;
 
     private ImageButton btnJumpLeft, btnJumpRight, btnLeft, btnRight;
@@ -145,7 +140,7 @@ class GameScreen extends abstractGameScreen {
 
         // Snow Impact Effects
         snowImpactEffects = new Array<ParticleEffectPool.PooledEffect>();
-        snowImpactEffect = new ParticleEffect();
+        ParticleEffect snowImpactEffect = new ParticleEffect();
         snowImpactEffect.load(Gdx.files.internal("snowImpact.fx"), Gdx.files.internal(""));
         snowImpactEffectPool = new ParticleEffectPool(snowImpactEffect, 0, 10);
 
@@ -156,7 +151,7 @@ class GameScreen extends abstractGameScreen {
         dropletsColors[2] = color.b;
 
         dropletImpactEffects = new Array<ParticleEffectPool.PooledEffect>();
-        dropletImpactEffect = new ParticleEffect();
+        ParticleEffect dropletImpactEffect = new ParticleEffect();
         dropletImpactEffect.load(Gdx.files.internal("dropletImpact.fx"), Gdx.files.internal(""));
         dropletImpactEffectPool = new ParticleEffectPool(dropletImpactEffect, 0, 10);
 
@@ -195,12 +190,12 @@ class GameScreen extends abstractGameScreen {
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) || this.btnLeft.isPressed()){
-            monster.x -= this.MONSTER_SPEED * delta;
+            monster.x -= MONSTER_SPEED * delta;
             monsterDirection = DIRECTION.LEFT;
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) || this.btnRight.isPressed()) {
-            monster.x += this.MONSTER_SPEED * delta;
+            monster.x += MONSTER_SPEED * delta;
             monsterDirection = DIRECTION.RIGHT;
         }
 
@@ -344,5 +339,37 @@ class GameScreen extends abstractGameScreen {
     private void spawnSnowFlake() {
         snowFlakes.add(new SnowFlake());
         lastSpawnTime = TimeUtils.nanoTime();
+    }
+
+    @Override
+    public void hide() {
+        // Pause Music ♫
+        if (Settings.soundEnabled) Assets.music.pause();
+
+        super.hide();
+    }
+
+    @Override
+    public void pause() {
+        // Pause Music ♫
+        if (Settings.soundEnabled) Assets.music.pause();
+
+        super.pause();
+    }
+
+    @Override
+    public void resume() {
+        super.resume();
+
+        // Resume Music ♫
+        if (Settings.soundEnabled) Assets.music.play();
+    }
+
+    @Override
+    public void dispose() {
+        // Stop Music ♫
+        if (Settings.soundEnabled) Assets.music.stop();
+
+        super.dispose();
     }
 }
