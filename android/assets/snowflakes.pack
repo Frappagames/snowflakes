@@ -17,18 +17,25 @@ title
   orig: 1002, 147
   offset: 0, 0
   index: -1
-btnPlay
+btnPlayOver
   rotate: false
   xy: 1, 1
   size: 198, 230
   orig: 198, 230
   offset: 0, 0
   index: -1
-btnPlayOver
+btnPlay
   rotate: false
   xy: 201, 1
   size: 198, 230
   orig: 198, 230
+  offset: 0, 0
+  index: -1
+snowman
+  rotate: false
+  xy: 401, 31
+  size: 167, 200
+  orig: 167, 200
   offset: 0, 0
   index: -1
 btnScore
@@ -38,100 +45,149 @@ btnScore
   orig: 222, 90
   offset: 0, 0
   index: -1
+btnScoresOver
+  rotate: false
+  xy: 1005, 261
+  size: 100, 119
+  orig: 100, 119
+  offset: 0, 0
+  index: -1
+btnScores
+  rotate: false
+  xy: 570, 112
+  size: 100, 119
+  orig: 100, 119
+  offset: 0, 0
+  index: -1
 btnJump
   rotate: false
-  xy: 1005, 263
+  xy: 1107, 263
   size: 100, 117
   orig: 100, 117
   offset: 0, 0
   index: -1
 btnJumpOver
   rotate: false
-  xy: 401, 114
+  xy: 672, 114
   size: 100, 117
   orig: 100, 117
   offset: 0, 0
   index: -1
-btnLeft
+btnLeftOver
   rotate: false
-  xy: 1107, 267
+  xy: 774, 118
   size: 100, 113
   orig: 100, 113
   offset: 0, 0
   index: -1
-btnLeftOver
+btnLeft
   rotate: false
-  xy: 503, 118
+  xy: 876, 118
   size: 100, 113
   orig: 100, 113
+  offset: 0, 0
+  index: -1
+btnExitOver
+  rotate: false
+  xy: 1507, 373
+  size: 100, 109
+  orig: 100, 109
+  offset: 0, 0
+  index: -1
+btnAbout
+  rotate: false
+  xy: 1609, 371
+  size: 100, 111
+  orig: 100, 111
+  offset: 0, 0
+  index: -1
+btnAboutOver
+  rotate: false
+  xy: 1711, 371
+  size: 100, 111
+  orig: 100, 111
   offset: 0, 0
   index: -1
 btnRight
   rotate: false
-  xy: 401, 1
+  xy: 1813, 371
   size: 100, 111
   orig: 100, 111
   offset: 0, 0
   index: -1
 btnRightOver
   rotate: false
-  xy: 503, 5
+  xy: 1915, 371
   size: 100, 111
   orig: 100, 111
   offset: 0, 0
   index: -1
-btnExit
+btnHelp
   rotate: false
-  xy: 605, 122
-  size: 100, 109
-  orig: 100, 109
+  xy: 1209, 270
+  size: 100, 110
+  orig: 100, 110
   offset: 0, 0
   index: -1
-btnExitOver
+btnHelpOver
   rotate: false
-  xy: 605, 11
+  xy: 1311, 280
+  size: 100, 110
+  orig: 100, 110
+  offset: 0, 0
+  index: -1
+btnMusicOn
+  rotate: false
+  xy: 570, 1
   size: 100, 109
   orig: 100, 109
   offset: 0, 0
   index: -1
 btnMusicOff
   rotate: false
-  xy: 707, 122
+  xy: 672, 3
   size: 100, 109
   orig: 100, 109
   offset: 0, 0
   index: -1
-btnMusicOn
+btnExit
   rotate: false
-  xy: 707, 11
+  xy: 774, 7
   size: 100, 109
   orig: 100, 109
-  offset: 0, 0
-  index: -1
-btnMenu
-  rotate: false
-  xy: 809, 136
-  size: 81, 95
-  orig: 81, 95
   offset: 0, 0
   index: -1
 btnMenuOver
   rotate: false
-  xy: 809, 39
+  xy: 1413, 295
+  size: 81, 95
+  orig: 81, 95
+  offset: 0, 0
+  index: -1
+btnMenu
+  rotate: false
+  xy: 876, 21
   size: 81, 95
   orig: 81, 95
   offset: 0, 0
   index: -1
 droplet
   rotate: false
-  xy: 1507, 418
+  xy: 1496, 307
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
+life
+  rotate: false
+  xy: 1562, 307
+  size: 39, 64
+  orig: 39, 64
+  offset: 0, 0
+  index: -1
 flocon
   rotate: false
-  xy: 1209, 316
+  xy: 1603, 305
   size: 56, 64
   orig: 56, 64
   offset: 0, 0

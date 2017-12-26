@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg4533"
+   sodipodi:docname="final489-snowman-graphic.svg"
+   viewBox="0 0 400 400"
+   version="1.1"
+   inkscape:version="0.91 r13725">
+  <desc
+     id="desc3">
+    Image from https://openclipart.org/detail/189339/snowman
+    
+    Added script to draw paths id=&quot;path4176&quot;.
+    Broke up paths for scarf.
+    
+    Jay Nick
+    http://STEAMcoded.org/maker
+  </desc>
+  <script
+     type="application/x-javascript"
+     id="script5"><![CDATA[
+    var DrawPaths = new function()
+    {
+      var l;
+      var increment;
+      var len;
+      var idx=0;
+      var paths;
+      var node;
+      var style;
+      
+      window.addEventListener("load", init);
+      
+      function init()
+      {
+        setTimeout(initialize,1000);
+      }
+      
+      function initialize()
+      {
+        paths = document.getElementsByTagName("path");
+        for(var i=0;i<paths.length;i++)
+        {
+          style = paths[i].getAttribute("style");
+          paths[i].setAttribute("style","display:none;"+style);
+        }
+        getPath();
+      }
+      
+      function getPath()
+      {
+        if(idx>paths.length) return;
+        
+        node = paths[idx];
+        style = node.getAttribute("style");
+        len = node.getTotalLength();
+        
+        increment=len/100;
+        if(increment<10) increment = 10;
+        l = increment;
+        
+        setTimeout(drawPath,500);
+      }
+      
+      function drawPath()
+      {
+        node.setAttribute("style","fill:none;stroke:magenta;stroke-width:2px;stroke-dasharray:"+l+","+len);
+        l+=increment;
+        if(l<len) setTimeout(drawPath,75);
+        else
+        {
+          style = style.replace("display:none;","");
+          node.setAttribute("style",style);
+          idx++;
+          setTimeout(getPath,50);
+        }
+      }
+    }();
+  ]]></script>
+  <defs
+     id="defs4535">
+    <filter
+       id="filter4155"
+       width="1.2108"
+       y="-.11904"
+       x="-.10542"
+       height="1.2381"
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always">
+      <feGaussianBlur
+         id="feGaussianBlur4157"
+         stdDeviation="14.730582"
+         inkscape:collect="always" />
+    </filter>
+    <filter
+       id="filter4163"
+       width="1.2108"
+       y="-.11904"
+       x="-.10542"
+       height="1.2381"
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always">
+      <feGaussianBlur
+         id="feGaussianBlur4165"
+         stdDeviation="14.730582"
+         inkscape:collect="always" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-y="0"
+     pagecolor="#ffffff"
+     inkscape:window-height="1030"
+     inkscape:window-maximized="1"
+     inkscape:zoom="0.98994949"
+     inkscape:window-x="0"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="layer1"
+     inkscape:cx="270.17425"
+     inkscape:cy="38.050161"
+     inkscape:window-width="1920"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px" />
+  <g
+     id="layer1"
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     transform="translate(0 -652.36)">
+    <g
+       id="g4241"
+       inkscape:export-xdpi="48.704502"
+       inkscape:export-ydpi="48.704502">
+      <path
+         id="path4034"
+         style="fill:#dae2f5;stroke:#800000;stroke-width:1.8086834"
+         d="m 89.400195,1018.9868 c -0.949349,-9.9545 3.280551,-14.4036 13.390365,-12.602 l 21.18055,25.6028 c -8.77676,0.1918 -16.75135,3.4063 -23.07722,-0.7732 -6.058053,2.9343 -12.86874,2.2828 -19.727416,1.4037 1.949687,-4.7407 -0.268496,-10.5136 8.234173,-13.6313 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4036"
+         style="fill:#dae2f5;stroke:#800000;stroke-width:1.8086834"
+         d="m 318.27783,1004.2502 c 12.51308,-2.1474 21.27101,2.603 28.1985,10.7156 3.96904,1.3538 7.00164,3.6226 9.74657,6.1719 5.62119,1.8308 10.7193,3.8449 9.72756,7.9933 l -66.25695,1.9669 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4102"
+         style="fill:#ad7536;stroke:#800000;stroke-width:1.8086834"
+         d="m 58.337729,890.89513 c 8.723915,2.16475 14.990646,0.91552 21.644488,-0.25855 -6.576774,-5.50188 -13.777431,-7.99712 -19.466104,-14.3876 6.654074,-0.0711 16.239789,6.74795 24.02365,10.45512 -0.28103,-3.57477 -1.95131,-9.28704 -3.370785,-14.61337 5.9404,4.50602 8.373752,12.43838 11.030325,20.15277 1.485778,3.52119 10.940877,5.3168 16.794097,8.07169 l -6.33181,8.91265 c -4.234358,-2.78125 -8.412352,-5.26194 -12.919715,-9.4979 -3.481115,0.13348 -7.231932,1.11178 -8.938434,0.67669 -5.518492,3.62424 -11.566088,3.92125 -15.66123,4.38613 5.016682,-2.59032 9.822059,-4.35675 13.414153,-8.40532 -9.513387,1.04264 -11.824241,1.36126 -20.218004,-5.49208 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccccccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4023"
+         style="fill:#dae2f5;stroke:#800000;stroke-width:1.8086834"
+         d="m 210.44682,850.06978 c -66.59118,-0.77776 -121.156931,47.88397 -121.866935,108.67419 -0.336276,28.79182 11.480975,55.13083 31.075075,74.97623 54.70425,13.0428 128.16042,8.3509 181.28398,-2.009 17.68195,-18.8909 28.4861,-43.33373 28.79928,-70.14835 0.71001,-60.79022 -52.6998,-110.71305 -119.2955,-111.49086 z"
+         inkscape:export-ydpi="300"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <ellipse
+         id="path4149"
+         style="fill:#ffffff;filter:url(#filter4163)"
+         inkscape:export-ydpi="300"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         transform="matrix(0.45833432,0.00535315,-0.00524632,0.44918753,4232.1918,691.03251)"
+         inkscape:export-xdpi="300"
+         cx="-8838.835"
+         cy="649.31134"
+         rx="167.68532"
+         ry="148.49243" />
+      <ellipse
+         id="path4025"
+         style="fill:#dae2f5;stroke:#800000;stroke-width:1.80874109"
+         inkscape:export-ydpi="300"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         transform="matrix(0.9999318,0.01167877,-0.01167877,0.9999318,0,0)"
+         inkscape:export-xdpi="300"
+         cx="226.92583"
+         cy="818.44525"
+         rx="81.067924"
+         ry="70.089455" />
+      <ellipse
+         id="path4139"
+         style="fill:#ffffff;filter:url(#filter4155)"
+         inkscape:export-ydpi="300"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         transform="matrix(0.32465913,0.00379188,-0.00371615,0.31817544,3071.5013,638.92595)"
+         inkscape:export-xdpi="300"
+         cx="-8838.835"
+         cy="649.31134"
+         rx="167.68532"
+         ry="148.49243" />
+      <path
+         id="path4199"
+         style="fill:#eb191a;stroke:#800000;stroke-width:1.8086834"
+         d="m 195.24431,709.09471 c 0.23995,-6.76847 2.60191,-12.20619 10.50148,-14.17009 16.49821,4.09646 47.633,12.16661 57.6583,24.9449 16.78929,24.08681 22.95837,42.58065 25.62353,62.60814 L 178.65133,747.10607 c 5.97696,-7.64566 13.59236,-13.40368 21.96587,-18.28914 -0.89389,-1.58193 -0.7843,-3.43794 -0.16985,-5.43202 -0.4582,-6.46687 -3.76811,-9.53618 -5.20159,-14.29426 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4043"
+         style="fill:#fffdff;stroke:#800000;stroke-width:1.8086834"
+         d="m 169.54269,746.13281 c 45.97828,-1.80019 88.96317,4.90226 122.42525,38.65829 2.89767,6.58127 4.25821,13.79033 4.18514,20.3369 -24.44147,-29.93045 -113.90537,-41.7893 -138.81603,-31.04517 -0.84805,-8.9332 2.69706,-18.52956 12.20307,-27.95005 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4189"
+         style="opacity:0.16872002;fill:#000000"
+         d="m 206.90839,694.61578 -0.17616,0.56319 c -0.31733,-0.079 -0.67923,-0.17552 -0.98625,-0.25175 -7.89939,1.96399 -10.25548,7.39536 -10.49553,14.16428 1.0518,3.49075 2.46211,2.41534 3.66669,6.0969 5.9516,0.29542 12.38038,-2.51652 14.81608,-8.4527 14.57612,5.97561 30.09211,10.9271 34.8326,17.03926 5.69741,7.34608 5.82552,16.39478 2.09055,33.95356 l 37.92398,23.37815 c -2.39736,-24.11226 -13.55357,-43.58006 -25.31149,-62.72659 -14.2621,-12.3412 -35.29264,-18.07113 -56.36071,-23.76306 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccccscccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4197"
+         style="fill:#fffdff;stroke:#800000;stroke-width:1.8086834"
+         d="m 205.76422,695.39829 c -0.14141,12.10786 -9.51104,21.12973 -22.62807,20.97653 -13.11659,-0.15319 -22.93171,-11.68321 -22.7903,-23.79107 0.11207,-9.59576 11.08268,-18.8273 24.19972,-18.6741 13.11658,0.15319 21.35961,9.38078 21.2182,21.48864 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="sssss"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4194"
+         style="opacity:0.16872002;fill:#000000"
+         d="m 195.05652,676.38929 c 2.01724,3.09654 3.09903,6.89564 3.05008,11.08653 -0.12634,10.81699 -8.49624,18.87922 -20.21481,18.74235 -7.49919,-0.0876 -13.79349,-4.33723 -17.31842,-10.22125 1.5225,10.77701 10.69294,20.23384 22.57021,20.37256 13.11658,0.1532 22.48755,-8.86731 22.62896,-20.97516 0.0984,-8.42789 -3.87332,-15.45673 -10.71589,-19.00458 z"
+         inkscape:export-ydpi="300"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4052"
+         style="fill:#000000;stroke:#800000;stroke-width:1.8086834"
+         d="m 203.99499,798.09524 c -0.0343,2.93235 -1.11439,4.95442 -3.82601,4.92275 -2.71162,-0.0317 -4.88202,-2.43447 -4.84777,-5.36683 0.0342,-2.93235 2.45102,-4.51057 5.16264,-4.4789 1.9409,0.0227 3.5291,3.38936 3.51119,4.92298 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="sssss"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4056"
+         style="fill:#000000;stroke:#800000;stroke-width:1.8086834"
+         d="m 167.57455,797.33071 c -0.025,2.14409 -3.99971,3.60762 -5.92321,3.58515 -1.92335,-0.0225 -0.97809,-1.6242 -0.0157,-3.54033 0.64301,-1.28036 3.31058,-3.27308 5.23376,-3.25062 1.92336,0.0225 0.72989,1.0617 0.70485,3.2058 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="sssss"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <ellipse
+         id="path4060"
+         style="fill:#ff0000;stroke:#800000;stroke-width:1.80868506"
+         inkscape:export-ydpi="300"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         transform="matrix(0.9999318,0.01167878,-0.01167878,0.9999318,0,0)"
+         inkscape:export-xdpi="300"
+         cx="198.93335"
+         cy="853.07715"
+         rx="4.7101908"
+         ry="3.96823" />
+      <path
+         id="path4081"
+         style="fill:#ff0000;stroke:#800000;stroke-width:1.8086834"
+         d="m 224.4696,846.58429 c -0.0344,2.94813 -2.75895,5.30647 -6.0853,5.26762 -3.32653,-0.0389 -5.65811,-1.99956 -5.62367,-4.94765 0.0344,-2.94813 2.65945,-6.56385 5.98603,-6.525 3.32648,0.0389 5.75738,3.25685 5.72294,6.20503 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="sssss"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4083"
+         style="fill:#ff0000;stroke:#800000;stroke-width:1.8086834"
+         d="m 241.0693,833.4744 c -0.0245,2.09743 -2.0307,3.7745 -4.48089,3.74588 -2.45029,-0.0286 -4.01777,-2.07912 -3.99327,-4.1765 0.0245,-2.09744 1.3283,-4.61956 4.23167,-4.27137 2.43292,0.29159 4.26698,2.60455 4.24249,4.7018 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="sssss"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4060-5"
+         style="fill:#ff0000;stroke:#800000;stroke-width:1.8086834"
+         d="m 249.15472,811.01301 c -0.0245,2.09743 -0.48321,3.2787 -2.9334,3.25008 -2.45028,-0.0286 -3.28625,-1.15699 -3.26175,-3.25438 0.0245,-2.09743 0.859,-4.39862 3.77358,-4.16253 2.14882,0.17407 2.44607,2.0694 2.42157,4.16683 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="sssss"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4085"
+         style="fill:#ff0000;stroke:#800000;stroke-width:1.8086834"
+         d="m 157.84391,842.17947 c -0.018,1.53841 -1.27967,2.77094 -2.81803,2.75297 -1.53841,-0.018 -2.48954,-1.30225 -2.75301,-2.81803 -0.37154,-2.13769 1.04264,-3.13565 2.81808,-2.75297 1.50394,0.32416 2.77093,1.27963 2.75296,2.81803 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="sssss"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4260"
+         style="fill:#f58b04;stroke:#800000;stroke-width:1.8086834"
+         d="m 178.45603,805.71953 c 8.64675,-0.7142 19.08741,4.95793 20.97565,14.49567 0.91751,7.43044 -6.03536,13.34271 -11.97402,16.77882 -26.27295,-0.77127 -51.9431,-3.98308 -76.41264,-12.03607 16.71529,-7.79156 41.35495,-13.68447 67.4083,-19.23891 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4173"
+         style="opacity:0.16461002;fill:#000000"
+         d="m 298.26443,884.91109 -164.67906,3.16389 c 16.77586,23.53361 68.13285,34.8782 110.72497,39.58928 -1.73268,10.09551 -2.96588,21.20346 -3.17202,34.44333 1.02716,19.8944 -0.1925,36.56458 -3.40058,50.38081 l 2.64968,-1.8203 1.50258,4.4406 3.00327,-9.1079 2.89023,11.4658 5.95539,-7.7734 4.39611,8.3605 1.32722,-10.7948 11.27223,6.4485 0.0691,-10.753 5.37584,4.3304 c -1.55882,2.829 -3.23469,5.6175 -5.04386,8.3634 -53.09785,28.6789 -133.24347,24.9708 -168.32021,-2.1779 l 16.74236,19.6262 c 58.20562,13.7032 121.33704,5.9988 183.91154,0.6783 27.38541,-41.35685 46.14184,-89.25024 -5.19993,-148.8622 z m -18.63957,46.71631 c 1.8913,0.0497 7.29492,-1.16125 9.00676,-1.14442 3.61096,22.84354 1.49535,43.78381 -5.96347,62.94013 -1.08876,-2.33961 -2.21826,-4.92234 -3.39641,-8.05223 -2.66553,-19.40661 -3.26531,-35.73584 -0.40843,-51.45175 0.25286,-0.78049 0.50326,-1.54115 0.76163,-2.29449 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cccccccccccccccccccccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4244"
+         style="fill:#ef9c81;stroke:#800000;stroke-width:1.8086834"
+         d="m 238.47892,907.36103 52.70056,-18.28018 c -6.30429,10.03986 -11.99815,19.73548 -16.7165,34.30006 -2.85691,15.71455 -3.24082,33.96093 -3.15139,52.68991 3.59235,9.54271 6.65337,14.3917 9.8885,20.77387 l -10.75014,-3.10222 3.85026,9.13063 -11.46925,-9.21012 -0.0597,10.73952 -11.28453,-6.44044 -1.31467,10.78864 -4.40469,-8.3575 -5.94913,7.7794 -2.89104,-11.47356 -3.00037,9.11076 -1.50746,-4.4408 -2.65053,1.8194 c 3.20808,-13.81622 4.42684,-30.48732 3.39963,-50.38081 0.28356,-18.21138 2.52207,-32.39567 5.31013,-45.44756 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccccccccccccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4246"
+         style="fill:#ef9c81;stroke:#800000;stroke-width:1.8086834"
+         d="m 141.62487,847.86414 c 3.42556,5.8395 6.95572,11.42608 11.25514,15.15224 35.12767,12.45105 120.82596,16.07384 143.27899,-23.90897 3.76127,6.52398 6.36528,11.45219 -0.54136,23.15545 0.16557,2.46824 0.28402,3.23719 2.01263,7.70686 4.85998,3.81859 5.90743,9.1872 1.02337,15.32125 -51.33072,33.02122 -129.67287,37.51455 -173.55239,-5.25701 -1.95439,-5.636 -1.48499,-10.57761 0.79201,-10.37465 2.68249,-1.20273 5.36309,-2.39879 8.92537,-6.95327 -3.14233,-10.11447 -2.08288,-14.57392 6.80533,-14.84137 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cccccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4176"
+         style="fill:#ee1328;stroke:#b9020e;stroke-width:1.8086834"
+         d="m 296.15862,839.10108 c -1.37393,2.44678 -2.99256,4.72582 -4.81415,6.85386 2.34378,7.5484 0.87074,16.1583 2.5337,23.84073 1.15654,5.34361 3.35235,10.29147 4.06743,15.93109 0.23604,-0.15 0.47701,-0.29288 0.71175,-0.44389 4.88397,-6.13405 3.83755,-11.49763 -1.02229,-15.31625 -1.72857,-4.4695 -1.84991,-5.24273 -2.01549,-7.71097 6.90706,-11.70326 4.30019,-16.63105 0.53896,-23.15503 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccccccccccccccccccccccccccsccccccccccccccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4176-1"
+         style="fill:#ee1328;stroke:#b9020e;stroke-width:1.8086834"
+         d="m 296.15862,839.10108 m -154.52925,8.76538 c -8.88843,0.26735 -9.95754,4.72859 -6.8153,14.84305 -3.5621,4.55458 -6.24507,5.74464 -8.92711,6.94737 -2.27709,-0.20286 -2.73978,4.74144 -0.7854,10.37745 3.23981,3.15816 6.66565,6.06138 10.25638,8.71162 1.00007,-5.20537 4.32016,-9.85412 5.96721,-14.82492 1.59634,-4.81811 0.77306,-10.77237 4.95367,-12.75935 l 5.12429,0.46968 c -3.64537,-3.65526 -6.74895,-8.60916 -9.77365,-13.76522 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccccccccccccccccccccccccccsccccccccccccccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4176-2"
+         style="fill:#ee1328;stroke:#b9020e;stroke-width:1.8086834"
+         d="m 296.15862,839.10108 m -154.52925,8.76538 m 131.05274,11.9878 c -6.91212,3.38657 -14.7017,5.93799 -22.96947,7.77232 1.75586,6.90664 3.6564,13.13757 5.83762,18.02918 0.57991,7.48755 1.02918,12.58233 1.90461,18.416 l 25.12345,-9.75991 -4.64208,-7.64578 c -3.49093,-8.08996 -4.37425,-17.45317 -5.25436,-26.81181 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccccccccccccccccccccccccccsccccccccccccccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4176-3"
+         style="fill:#ee1328;stroke:#b9020e;stroke-width:1.8086834"
+         d="m 296.15862,839.10108 m -154.52925,8.76538 m 131.05274,11.9878 m -115.57702,4.54275 c -3.0248,10.42862 0.70949,15.0042 2.69261,22.33042 1.34679,4.97548 -0.26958,10.26544 -0.16537,15.35891 7.0958,2.80069 14.51703,4.91676 22.13976,6.39134 -0.39469,-4.73464 1.74929,-9.14027 -0.56949,-17.78361 -2.16153,-8.05725 -5.88256,-15.53762 -5.74727,-22.12597 -6.79867,-1.1391 -13.00758,-2.55615 -18.35047,-4.17109 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccccccccccccccccccccccccccsccccccccccccccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4176-4"
+         style="fill:#ee1328;stroke:#b9020e;stroke-width:1.8086834"
+         d="m 296.15862,839.10108 m -154.52925,8.76538 m 131.05274,11.9878 m -115.57702,4.54275 m 68.39052,6.62087 c -7.90448,0.54221 -15.87709,0.60564 -23.63075,0.27514 6.92554,10.40918 8.55227,29.01864 4.58052,39.74822 7.80952,0.15502 15.682,-0.27904 23.51525,-1.26564 -0.0323,-12.89853 -1.241,-25.8221 -4.46501,-38.7579 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccccccccccccccccccccccccccsccccccccccccccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4176-5"
+         style="fill:#ee1328;stroke:#b9020e;stroke-width:1.8086834"
+         d="m 296.15862,839.10108 m -154.52925,8.76538 m 131.05274,11.9878 m -115.57702,4.54275 m 68.39052,6.62087 m 52.53653,42.61183 c -12.42609,2.79084 -30.01713,2.78575 -40.94671,0.72295 -1.53888,8.15647 -2.79773,16.90001 -3.45105,26.87971 11.4019,1.85054 28.23163,0.75498 38.73841,-1.59657 0.47479,-5.64245 1.14387,-11.08684 2.0834,-16.25493 1.13742,-3.5109 2.32881,-6.73367 3.57608,-9.75111 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccccccccccccccccccccccccccsccccccccccccccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4176-6"
+         style="fill:#ee1328;stroke:#b9020e;stroke-width:1.8086834"
+         d="m 296.15862,839.10108 m -154.52925,8.76538 m 131.05274,11.9878 m -115.57702,4.54275 m 68.39052,6.62087 m 52.53653,42.61183 m -6.6079,45.48214 c -13.84704,6.86775 -27.56854,5.85238 -37.91821,3.9661 0.0967,7.604 -0.17645,14.68138 -0.78544,21.27234 9.19742,2.81847 26.44193,-0.26202 39.606,-5.68464 -0.33458,-0.83248 -0.67169,-1.68497 -1.01537,-2.59791 -0.0273,-5.71841 -0.004,-11.38694 0.11325,-16.95624 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccccccccccccccccccccccccccsccccccccccccccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4099"
+         style="fill:#ad7536;stroke:#800000;stroke-width:1.8086834"
+         d="m 306.15568,909.66182 c 6.32036,-4.98858 12.01846,-10.82733 17.44283,-17.04009 -3.15625,-10.55281 -4.3576,-19.18807 -0.32347,-22.68711 1.53096,6.33513 3.06568,12.66625 7.30631,16.06026 2.99626,-4.2914 5.81382,-11.83586 8.56021,-20.67824 1.45406,3.80987 1.88016,9.37395 2.38973,15.91105 6.75905,-3.63852 11.247,-7.30374 16.29333,-10.9619 -0.98289,3.15465 -6.74524,10.00667 -12.89878,16.12227 5.86263,0.82696 12.16979,-2.52833 16.84368,-1.478 -8.2704,5.31219 -17.57638,9.3104 -27.03199,12.18133 -3.02344,2.18549 -5.37501,3.4965 -7.47522,4.48083 L 313.1545,916.596 c -7.34502,4.79301 -8.74166,-3.31662 -6.99914,-6.93351 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccccccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4105"
+         style="fill:#000000;stroke:#800000;stroke-width:1.8086834"
+         d="m 167.21883,925.74279 c -0.0405,3.46841 -2.5783,6.25097 -5.66814,6.21488 -3.09001,-0.0361 -5.05097,-2.64265 -5.01047,-6.11079 0.0405,-3.46836 2.74156,-5.56352 5.83149,-5.52743 3.09001,0.0361 4.88762,1.95552 4.84711,5.42379 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="sssss"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4105-8"
+         style="fill:#000000;stroke:#800000;stroke-width:1.8086834"
+         d="m 160.5391,967.23115 c -0.0405,3.46837 -2.5783,6.25097 -5.66813,6.21488 -3.09002,-0.0361 -7.32941,-3.12603 -7.2889,-6.59457 0.0405,-3.46837 3.20499,-6.12924 6.29482,-6.09316 3.09002,0.0361 6.70271,3.00453 6.66221,6.47285 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="sssss"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <ellipse
+         id="path4126"
+         style="fill:#000000;stroke:#800000;stroke-width:1.80866301"
+         inkscape:export-ydpi="300"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         transform="matrix(0.9999318,0.01167878,-0.01167877,0.9999318,0,0)"
+         inkscape:export-xdpi="300"
+         cx="171.01089"
+         cy="1005.8578"
+         rx="4.9672704"
+         ry="4.8816342" />
+      <path
+         id="rect4167"
+         style="opacity:0.16461002;fill:#000000"
+         d="m 99.84411,1006.7637 18.88126,25.8992 c -6.48196,1.3249 -12.4407,1.1384 -17.58749,-1.3929 -5.750831,2.0288 -12.19305,2.3905 -19.199995,1.3907 l 1.055492,-6.664 c 11.792623,2.5461 18.688793,-9.7356 16.850732,-19.2329 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4170"
+         style="opacity:0.16461002;fill:#000000"
+         d="m 320.84569,1003.9185 c 2.04059,-0.5215 6.60748,-0.883 8.38533,0.7612 -9.64908,10.2599 11.68975,22.7366 31.60802,18.1171 5.0919,2.3137 2.46943,1.8387 5.90102,6.3677 l -64.29358,1.5101 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4180"
+         style="opacity:0.27572004;fill:#000000"
+         d="m 187.07299,869.77505 c 27.33606,2.66982 82.2133,5.93444 108.55469,-29.7405 3.04983,3.20949 7.72401,6.58654 0.24889,22.79749 l 1.77372,7.43321 c 5.31288,3.17781 4.75358,8.5144 1.00187,15.02479 -59.57888,36.89296 -111.50758,30.51546 -153.54615,10.15789 26.00659,9.98764 82.58971,18.61856 121.41796,-1.70394 -18.23047,2.82307 -36.66155,0.0561 -36.97038,-2.84945 -0.49666,-4.6689 26.4051,-11.43347 41.57074,-17.56365 6.30724,-2.5496 7.31472,-5.83841 7.28802,-7.57879 -24.94897,6.93886 -63.84279,13.633 -97.0594,6.86855 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cccccccssccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4183"
+         style="opacity:0.16872002;fill:#000000"
+         d="m 212.6305,772.67383 c 31.93763,4.99633 64.68324,12.36259 83.4486,31.80802 4.59038,12.49911 1.88157,24.24868 0.0353,36.08701 -32.53154,34.58744 -68.27675,31.26004 -96.74786,31.30238 35.32137,-6.41842 58.88116,-17.80824 68.8443,-33.00569 5.93964,-9.05741 10.0292,-21.43389 8.45811,-34.39154 -18.51475,-15.77514 -36.41683,-24.92381 -64.0402,-31.8002 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccscc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4186"
+         style="opacity:0.16872002;fill:#000000"
+         d="m 241.50982,753.94179 c 18.34352,7.63125 36.73132,15.18796 50.22483,31.07766 l 4.5638,19.92395 c -20.84142,-17.19918 -45.24393,-25.06761 -70.44082,-30.85705 10.98545,-2.02296 20.75448,-13.9192 15.65219,-20.14456 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4205"
+         style="opacity:0.16872002;fill:#000000"
+         d="m 98.201173,896.54295 9.789837,3.319 -5.83547,8.7335 -4.490277,-2.71722 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4208"
+         style="opacity:0.16872002;fill:#000000"
+         d="m 306.26872,909.66314 12.34442,-10.7046 c 5.15257,-0.093 13.72191,-2.00031 19.5278,-6.03311 9.52034,-0.709 14.2791,-4.64013 22.99501,-7.28817 l -26.22915,11.66208 -7.67491,4.69692 -13.62665,15.0615 c -6.90951,2.62148 -7.75937,-1.66135 -7.33653,-7.39417 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4250"
+         style="fill:none;stroke:#800000;stroke-width:1.8086834"
+         d="m 179.26084,805.72893 c 11.66535,6.39652 11.60567,24.12846 2.86559,31.20328"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4252"
+         style="fill:none;stroke:#800000;stroke-width:1.8086834"
+         d="m 164.52853,808.7901 c 10.31528,6.06965 11.34522,19.32621 4.5255,27.34639"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4254"
+         style="fill:none;stroke:#800000;stroke-width:1.8086834"
+         d="m 149.14484,812.64407 c 7.81386,3.92593 7.17136,16.27031 1.3677,21.17268"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4256"
+         style="fill:none;stroke:#800000;stroke-width:1.8086834"
+         d="m 136.34204,816.21163 c 3.14294,5.56714 3.25714,10.76201 2.5603,15.85696"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="path4258"
+         style="fill:none;stroke:#800000;stroke-width:1.8086834"
+         d="m 122.56416,820.40994 c 2.71929,0.40536 3.98898,8.61716 2.48182,8.75015"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4090"
+         style="opacity:0.14814998;fill:#000000"
+         d="m 193.26054,810.41445 c 3.83882,3.02494 5.75613,5.60942 6.1725,9.80076 0.91751,7.43044 -6.03537,13.34272 -11.97402,16.77883 -26.27295,-0.77127 -51.94311,-3.98309 -76.41264,-12.03608 16.88781,0.39671 54.95534,3.93384 77.91164,-1.31698 5.78056,-1.32224 5.77963,-6.7015 4.30063,-13.22686 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="ccccsc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+      <path
+         id="rect4570"
+         style="opacity:0.1893;fill:#000000"
+         d="m 237.30914,908.40099 52.29782,-19.03146 -15.5943,34.58539 -2.87909,52.73831 10.37934,19.01376 -10.93989,-1.95494 2.18796,9.06915 -9.52899,-10.12713 -0.38513,12.24523 -11.216,-6.92672 -2.3758,10.56782 -3.2987,-8.4613 -6.15483,7.891 6.11868,-18.81206 c 9.04939,0.43237 14.37739,-2.4468 18.95054,-4.30746 0.49014,-25.22442 1.12493,-65.95857 7.06268,-75.67034 -8.86622,3.32088 -21.2262,4.40072 -34.90532,4.63482 z"
+         inkscape:export-ydpi="300"
+         sodipodi:nodetypes="cccccccccccccccccc"
+         inkscape:export-filename="/home/isac/Documents/Ocastudios/Bronze/ataque_a_torre_special/troops/boneco.png"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="300" />
+    </g>
+  </g>
+  <metadata
+     id="metadata64">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

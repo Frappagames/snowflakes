@@ -28,8 +28,20 @@ Crédits :
 ### Design :
 
 **Robert Brooks et Scott Brooks** :  [gamedeveloperstudio.com](http://www.gamedeveloperstudio.com) ([Licence](http://www.gamedeveloperstudio.com/license.php))
+**Home Snowman** by Jaynick [goodfreephotos.com](https://www.goodfreephotos.com) ([Licence CC0 / Public Domain](https://creativecommons.org/licenses/publicdomain/))
 
 
 ### Polices : 
 
 **Snowtop Caps** : *Dieter Steffmann* ([Police DAFONT](http://www.dafont.com/snowtop-caps.font))  
+
+
+### Music :
+
+Music Box - Extract of Peer Gynt Suites from Edvard Grieg - Adapted by Mourioche  
+[sound-fishing.net](http://www.sound-fishing.net) ([Licence LESF](http://www.sound-fishing.net/licence-LESF.html))
+
+
+### Sounds :
+
+**Hoerspielwerkstatt_HEF**, **yummie** [freesound.org](https://freesound.org) ([Licence CC by 3.0](https://creativecommons.org/licenses/by/3.0/))
