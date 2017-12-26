@@ -24,14 +24,14 @@ public class Assets {
         btnJump, btnJumpOver, btnLeft, btnLeftOver, btnRight, btnRightOver;
     public static Animation standAnimation, walkAnimation, jumpAnimation;
 
-    public static Sound clickSound;
+    public static Sound clickSound, hitSound, pickSound;
     public static Music music;
     private static TextureAtlas itemsAtlas;
 
     public static Label.LabelStyle fontScore;
 
     public static void load() {
-        //Fonts
+        // Fonts
         BitmapFont souses20Font = new BitmapFont(Gdx.files.internal("fontScore.fnt"), false);
         fontScore = new Label.LabelStyle(souses20Font, Color.WHITE);
 
@@ -66,11 +66,15 @@ public class Assets {
         btnJumpOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnJumpOver"));
 
         // Load Music and sounds
+        // Music ♫
         music = Gdx.audio.newMusic(Gdx.files.internal("music.ogg"));
         music.setLooping(true);
         music.setVolume(0.5f);
 
+        // Sounds ♪
         clickSound = Gdx.audio.newSound(Gdx.files.internal("sound-click.mp3"));
+        pickSound  = Gdx.audio.newSound(Gdx.files.internal("sound-pick.mp3"));
+        hitSound   = Gdx.audio.newSound(Gdx.files.internal("sound-hit.mp3"));
 
         // Load animations
 

@@ -242,6 +242,11 @@ class GameScreen extends abstractGameScreen {
 
             if (snowFlake.getY() < Snowflakes.GROUND_HEIGHT || snowFlake.overlaps(bounds))
             {
+                // Monster collect a SnowFlake
+                if (snowFlake.overlaps(bounds)) {
+                    Assets.playSound(Assets.pickSound);
+                }
+
                 iter.remove();
 
                 // Add effect
@@ -257,19 +262,24 @@ class GameScreen extends abstractGameScreen {
 
         Iterator<Rectangle> iter2 = droplets.iterator();
         while (iter2.hasNext()) {
-            Rectangle rect = iter2.next();
-            rect.y -= SnowFlake.DEFAULT_DROPLET_SPEED * Gdx.graphics.getDeltaTime();
+            Rectangle droplet = iter2.next();
+            droplet.y -= SnowFlake.DEFAULT_DROPLET_SPEED * Gdx.graphics.getDeltaTime();
 
-            if (rect.y < Snowflakes.GROUND_HEIGHT || rect.overlaps(bounds)) {
+            if (droplet.y < Snowflakes.GROUND_HEIGHT || droplet.overlaps(bounds)) {
+                // Droplet hit the monster
+                if (droplet.overlaps(bounds)) {
+                    Assets.playSound(Assets.hitSound);
+                }
+
                 iter2.remove();
 
                 // Add effect
                 ParticleEffectPool.PooledEffect effect = dropletImpactEffectPool.obtain();
-                effect.setPosition(rect.x + rect.width / 2, rect.y);
+                effect.setPosition(droplet.x + droplet.width / 2, droplet.y);
                 effect.getEmitters().get(0).getTint().setColors(dropletsColors);
                 dropletImpactEffects.add(effect);
 
-                if (rect.overlaps(bounds)) {
+                if (droplet.overlaps(bounds)) {
                     lblScore.setText(String.valueOf(Integer.parseInt(lblScore.getText().toString()) - 3));
                 }
             }
