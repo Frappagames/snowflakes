@@ -49,6 +49,10 @@ public abstract class abstractGameScreen implements Screen {
 
     }
 
+    public void update(float delta) {
+
+    }
+
     public void draw(float delta) {
         stage.act(delta);
         stage.draw();
@@ -62,6 +66,7 @@ public abstract class abstractGameScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
+        this.update(delta);
         this.draw(delta);
     }
 

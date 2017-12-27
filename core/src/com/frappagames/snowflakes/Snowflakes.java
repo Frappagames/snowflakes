@@ -18,12 +18,13 @@ public class Snowflakes extends Game {
 	public static final int MAX_SPAWN_SPEED = 300;
 
 	/**
-	 * TODO : Vies
 	 * TODO : game Over
-	 * TODO : Timer
-	 * TODO : Win screen
 	 * TODO : Best score
-	 * TODO : impact anim et son
+	 * TODO : impact anim
+	 * TODO : +/- anim
+	 * TODO : Help screen
+	 * TODO : Highscore screen
+	 * TODO : About screen
 	 */
 
 	@Override

@@ -73,9 +73,7 @@ class MenuScreen extends abstractGameScreen {
     }
 
     @Override
-    public void render(float delta) {
-        super.render(delta);
-
+    public void update(float delta) {
         // Exit game on ESCAPE
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             game.dispose();

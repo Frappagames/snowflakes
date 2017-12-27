@@ -21,7 +21,7 @@ import com.badlogic.gdx.utils.Array;
 public class Assets {
     public static TextureRegionDrawable title, droplet,btnScore, snowflake,  ground,
         btnPlay, btnPlayOver, btnExit, btnExitOver, btnMenu, btnMenuOver, btnMusicOn, btnMusicOff,
-        btnJump, btnJumpOver, btnLeft, btnLeftOver, btnRight, btnRightOver;
+        btnJump, btnJumpOver, btnLeft, btnLeftOver, btnRight, btnRightOver, life;
     public static Animation standAnimation, walkAnimation, jumpAnimation;
 
     public static Sound clickSound, hitSound, pickSound;
@@ -43,6 +43,7 @@ public class Assets {
         snowflake   = new TextureRegionDrawable(itemsAtlas.findRegion("flocon"));
         droplet     = new TextureRegionDrawable(itemsAtlas.findRegion("droplet"));
         btnScore    = new TextureRegionDrawable(itemsAtlas.findRegion("btnScore"));
+        life        = new TextureRegionDrawable(itemsAtlas.findRegion("life"));
 
         btnPlay     = new TextureRegionDrawable(itemsAtlas.findRegion("btnPlay"));
         btnPlayOver = new TextureRegionDrawable(itemsAtlas.findRegion("btnPlayOver"));

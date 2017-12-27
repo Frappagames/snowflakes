@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -41,25 +42,28 @@ class GameScreen extends abstractGameScreen {
     private enum DIRECTION {LEFT, RIGHT}
 
     private final float[] dropletsColors;
-    private boolean monsterJump;
-    private int YSpeed;
-    private int currentSpawnSpeed;
-    private int currentDropletsSpeed;
-    private DIRECTION monsterDirection;
-    private Array<SnowFlake> snowFlakes;
-    private Array<Rectangle> droplets;
-    private long lastSpawnTime;
-    private long lastDropletSpawnTime;
-    private final long gameStartTime;
-    private final boolean gameIsPlaying;
-    private Stage uiStage;
-    private Rectangle monster;
-    private float stateTime;
-    private ParticleEffectPool snowImpactEffectPool, dropletImpactEffectPool;
+    private boolean monsterJump, gameOver;
+    private       int                YSpeed;
+    private       int                currentSpawnSpeed;
+    private       int                currentDropletsSpeed;
+    private       int                life;
+    private       DIRECTION          monsterDirection;
+    private       Array<SnowFlake>   snowFlakes;
+    private       Array<Rectangle>   droplets;
+    private       long               lastSpawnTime;
+    private       long               lastDropletSpawnTime;
+    private final long               gameStartTime;
+    private       boolean            gameIsPlaying;
+    private       Stage              uiStage;
+    private       Rectangle          monster;
+    private       float              stateTime;
+    private       ParticleEffectPool snowImpactEffectPool, dropletImpactEffectPool;
     private Array<ParticleEffectPool.PooledEffect> snowImpactEffects, dropletImpactEffects;
     private Rectangle bounds;
+    private TextureRegion currentFrame;
 
     private ImageButton btnJumpLeft, btnJumpRight, btnLeft, btnRight;
+    private Image life1, life2, life3;
 
     private Label lblScore;
 
@@ -68,11 +72,12 @@ class GameScreen extends abstractGameScreen {
 
         lastSpawnTime = 0;
         lastDropletSpawnTime = 0;
-        snowFlakes    = new Array<SnowFlake>();
-        droplets      = new Array<Rectangle>();
+        life = 3;
+        snowFlakes = new Array<SnowFlake>();
+        droplets = new Array<Rectangle>();
         gameStartTime = TimeUtils.nanoTime();
         gameIsPlaying = true;
-        monsterJump   = false;
+        monsterJump = false;
         stateTime = 0f;
         dropletsColors = new float[3];
         currentSpawnSpeed = Snowflakes.SPAWN_SPEED_MS;
@@ -90,6 +95,14 @@ class GameScreen extends abstractGameScreen {
         btnRight  = new ImageButton(Assets.btnRight, Assets.btnRightOver);
         btnRight.pad(15, 0, 15, 15);
 
+        life1  = new Image(Assets.life);
+        life2  = new Image(Assets.life);
+        life3  = new Image(Assets.life);
+        HorizontalGroup lifeGroup = new HorizontalGroup();
+        lifeGroup.addActor(life3);
+        lifeGroup.addActor(life2);
+        lifeGroup.addActor(life1);
+
         Table scoreTable = new Table();
         scoreTable.setFillParent(true);
         scoreTable.add(lblScore).pad(3, 0, 0, 8).expandX().align(Align.right);
@@ -102,10 +115,13 @@ class GameScreen extends abstractGameScreen {
         uiStage = new Stage(viewport);
         Gdx.input.setInputProcessor(uiStage);
         Table uiTable = new Table();
+        uiTable.align(Align.top);
         uiTable.setFillParent(true);
         uiStage.addActor(uiTable);
-        uiTable.add(stack).expand().top().left().pad(15, 15, 0, 0);
-        uiTable.add(btnMenu).expand().top().right().pad(15, 0, 0, 15);
+        uiTable.add(stack).pad(15, 15, 0, 0);
+        uiTable.add().expandX();
+        uiTable.add(lifeGroup).top().right().pad(30, 0, 0, 15);
+        uiTable.add(btnMenu).top().right().pad(15, 0, 0, 15);
 
         if (Gdx.app.getType() == ApplicationType.Android || Gdx.app.getType() == ApplicationType.iOS) {
             Table controlTable = new Table();
@@ -160,20 +176,23 @@ class GameScreen extends abstractGameScreen {
     }
 
     @Override
-    public void render(float delta) {
-        super.render(delta);
-
-        // Reduce balloons spawning delay to add difficulty over time
-        if (this.currentSpawnSpeed > Snowflakes.MAX_SPAWN_SPEED) {
-            this.currentSpawnSpeed = Snowflakes.SPAWN_SPEED_MS - Math.round((TimeUtils.nanoTime() - gameStartTime) / 130000000);
-        }
-        if (this.currentDropletsSpeed > Snowflakes.DROPLET_MAX_SPAWN_SPEED) {
-            this.currentDropletsSpeed = Snowflakes. DROPLET_SPAWN_SPEED_MS - Math.round((TimeUtils.nanoTime() - gameStartTime) / 130000000);
+    public void update(float delta) {
+        // Exit to game menu on ESCAPE
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            Assets.playSound(Assets.clickSound);
+            game.setScreen(new MenuScreen(game));
         }
 
-
-        // check if we need to create a new raindrop
         if (gameIsPlaying) {
+            // Reduce spawning delay to add difficulty over time
+            if (this.currentSpawnSpeed > Snowflakes.MAX_SPAWN_SPEED) {
+                this.currentSpawnSpeed = Snowflakes.SPAWN_SPEED_MS - Math.round((TimeUtils.nanoTime() - gameStartTime) / 130000000);
+            }
+            if (this.currentDropletsSpeed > Snowflakes.DROPLET_MAX_SPAWN_SPEED) {
+                this.currentDropletsSpeed = Snowflakes.DROPLET_SPAWN_SPEED_MS - Math.round((TimeUtils.nanoTime() - gameStartTime) / 130000000);
+            }
+
+            // check if we need to create a new raindrop
             if (TimeUtils.nanoTime() - lastSpawnTime > this.currentSpawnSpeed * 1000000L) {
                 spawnSnowFlake();
             }
@@ -181,160 +200,182 @@ class GameScreen extends abstractGameScreen {
             if (TimeUtils.nanoTime() - lastDropletSpawnTime > this.currentDropletsSpeed * 1000000L) {
                 spawnDroplet();
             }
-        }
 
-        if((Gdx.input.isKeyPressed(Input.Keys.UP) || this.btnJumpLeft.isPressed() || this.btnJumpRight.isPressed())
-                && monster.y == Snowflakes.GROUND_HEIGHT) {
-            monsterJump = true;
-            YSpeed = JUMP_SPEED;
-        }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) || this.btnLeft.isPressed()){
-            monster.x -= MONSTER_SPEED * delta;
-            monsterDirection = DIRECTION.LEFT;
-        }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) || this.btnRight.isPressed()) {
-            monster.x += MONSTER_SPEED * delta;
-            monsterDirection = DIRECTION.RIGHT;
-        }
-
-        // Exit to game menu on ESCAPE
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            Assets.playSound(Assets.clickSound);
-            game.setScreen(new MenuScreen(game));
-        }
-
-        TextureRegion currentFrame;
-        if (monsterJump) {
-            monster.y += YSpeed;
-            YSpeed -= FALL_SPEED;
-
-            if (monster.y <= Snowflakes.GROUND_HEIGHT) {
-                monsterJump = false;
-                YSpeed = 0;
+            if ((Gdx.input.isKeyPressed(Input.Keys.UP) || this.btnJumpLeft.isPressed() || this.btnJumpRight.isPressed())
+                    && monster.y == Snowflakes.GROUND_HEIGHT) {
+                monsterJump = true;
+                YSpeed = JUMP_SPEED;
             }
-            currentFrame = Assets.jumpAnimation.getKeyFrame(stateTime, false);
-        } else if(Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)
-                || this.btnLeft.isPressed() || this.btnRight.isPressed()) {
-            currentFrame = Assets.walkAnimation.getKeyFrame(stateTime, true);
-        } else {
-            currentFrame = Assets.standAnimation.getKeyFrame(stateTime, true);
-        }
 
-        if (monsterDirection == DIRECTION.RIGHT && !currentFrame.isFlipX()) {
-            currentFrame.flip(true, false);
-        } else if (monsterDirection == DIRECTION.LEFT && currentFrame.isFlipX()) {
-            currentFrame.flip(true, false);
-        }
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || this.btnLeft.isPressed()) {
+                monster.x -= MONSTER_SPEED * delta;
+                monsterDirection = DIRECTION.LEFT;
+            }
 
-        stateTime += Gdx.graphics.getDeltaTime();
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || this.btnRight.isPressed()) {
+                monster.x += MONSTER_SPEED * delta;
+                monsterDirection = DIRECTION.RIGHT;
+            }
 
-        // make sure the monster stays within the screen bounds
-        if(monster.x < -68) monster.x = -68;
-        if(monster.x > Snowflakes.WIDTH - monster.width + 68) monster.x = Snowflakes.WIDTH - monster.width + 68;
-        bounds.setPosition(monster.x + 68, monster.y);
+            if (monsterJump) {
+                monster.y += YSpeed;
+                YSpeed -= FALL_SPEED;
 
-        Iterator<SnowFlake> iter = snowFlakes.iterator();
-        while (iter.hasNext()) {
-            SnowFlake snowFlake = iter.next();
-            snowFlake.setY(snowFlake.getY() - snowFlake.getSpeed() * Gdx.graphics.getDeltaTime());
-
-            if (snowFlake.getY() < Snowflakes.GROUND_HEIGHT || snowFlake.overlaps(bounds))
-            {
-                // Monster collect a SnowFlake
-                if (snowFlake.overlaps(bounds)) {
-                    Assets.playSound(Assets.pickSound);
+                if (monster.y <= Snowflakes.GROUND_HEIGHT) {
+                    monsterJump = false;
+                    YSpeed = 0;
                 }
+                currentFrame = Assets.jumpAnimation.getKeyFrame(stateTime, false);
+            } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)
+                    || this.btnLeft.isPressed() || this.btnRight.isPressed()) {
+                currentFrame = Assets.walkAnimation.getKeyFrame(stateTime, true);
+            } else {
+                currentFrame = Assets.standAnimation.getKeyFrame(stateTime, true);
+            }
 
-                iter.remove();
+            if (monsterDirection == DIRECTION.RIGHT && !currentFrame.isFlipX()) {
+                currentFrame.flip(true, false);
+            } else if (monsterDirection == DIRECTION.LEFT && currentFrame.isFlipX()) {
+                currentFrame.flip(true, false);
+            }
 
-                // Add effect
-                ParticleEffectPool.PooledEffect effect = snowImpactEffectPool.obtain();
-                effect.setPosition(snowFlake.getX() + snowFlake.width / 2, snowFlake.getY());
-                snowImpactEffects.add(effect);
+            stateTime += Gdx.graphics.getDeltaTime();
 
-                if (snowFlake.overlaps(bounds)) {
-                    lblScore.setText(String.valueOf(Integer.parseInt(lblScore.getText().toString()) + 10));
+            // make sure the monster stays within the screen bounds
+            if (monster.x < -68) monster.x = -68;
+            if (monster.x > Snowflakes.WIDTH - monster.width + 68)
+                monster.x = Snowflakes.WIDTH - monster.width + 68;
+            bounds.setPosition(monster.x + 68, monster.y);
+
+            Iterator<SnowFlake> iter = snowFlakes.iterator();
+            while (iter.hasNext()) {
+                SnowFlake snowFlake = iter.next();
+                snowFlake.setY(snowFlake.getY() - snowFlake.getSpeed() * Gdx.graphics.getDeltaTime());
+
+                if (snowFlake.getY() < Snowflakes.GROUND_HEIGHT || snowFlake.overlaps(bounds)) {
+                    iter.remove();
+
+                    // Add effect
+                    ParticleEffectPool.PooledEffect effect = snowImpactEffectPool.obtain();
+                    effect.setPosition(snowFlake.getX() + snowFlake.width / 2, snowFlake.getY());
+                    snowImpactEffects.add(effect);
+
+                    // Monster collect a SnowFlake
+                    if (snowFlake.overlaps(bounds)) {
+                        Assets.playSound(Assets.pickSound);
+                        lblScore.setText(String.valueOf(Integer.parseInt(lblScore.getText().toString()) + 10));
+                    }
                 }
             }
-        }
 
-        Iterator<Rectangle> iter2 = droplets.iterator();
-        while (iter2.hasNext()) {
-            Rectangle droplet = iter2.next();
-            droplet.y -= SnowFlake.DEFAULT_DROPLET_SPEED * Gdx.graphics.getDeltaTime();
+            Iterator<Rectangle> iter2 = droplets.iterator();
+            while (iter2.hasNext()) {
+                Rectangle droplet = iter2.next();
+                droplet.y -= SnowFlake.DEFAULT_DROPLET_SPEED * Gdx.graphics.getDeltaTime();
 
-            if (droplet.y < Snowflakes.GROUND_HEIGHT || droplet.overlaps(bounds)) {
-                // Droplet hit the monster
-                if (droplet.overlaps(bounds)) {
-                    Assets.playSound(Assets.hitSound);
-                }
+                if (droplet.y < Snowflakes.GROUND_HEIGHT || droplet.overlaps(bounds)) {
+                    iter2.remove();
 
-                iter2.remove();
+                    // Add effect
+                    ParticleEffectPool.PooledEffect effect = dropletImpactEffectPool.obtain();
+                    effect.setPosition(droplet.x + droplet.width / 2, droplet.y);
+                    effect.getEmitters().get(0).getTint().setColors(dropletsColors);
+                    dropletImpactEffects.add(effect);
 
-                // Add effect
-                ParticleEffectPool.PooledEffect effect = dropletImpactEffectPool.obtain();
-                effect.setPosition(droplet.x + droplet.width / 2, droplet.y);
-                effect.getEmitters().get(0).getTint().setColors(dropletsColors);
-                dropletImpactEffects.add(effect);
-
-                if (droplet.overlaps(bounds)) {
-                    lblScore.setText(String.valueOf(Integer.parseInt(lblScore.getText().toString()) - 3));
+                    // Droplet hit the monster
+                    if (droplet.overlaps(bounds)) {
+                        Assets.playSound(Assets.hitSound);
+                        loseLife();
+                    }
                 }
             }
         }
+    }
 
+    public void draw(float delta) {
         game.batch.begin();
+
+        // Draw background
         game.batch.draw(background, -(monster.x / 8) - 20, 0);
+
+        // Draw snow
         snowEffect.getEmitters().first().setAttached(true);
         snowEffect.setPosition(-(monster.x / 12) - 20, Snowflakes.HEIGHT);
         snowEffect.draw(game.batch, delta);
 
+        // Draw ground
         game.batch.draw(Assets.ground.getRegion(), 0, 0);
 
-        for (SnowFlake snowFlake : snowFlakes) {
-            game.batch.draw(
-                    Assets.snowflake.getRegion(),
-                    snowFlake.x,
-                    snowFlake.y,
-                    snowFlake.width,
-                    snowFlake.height
-            );
-        }
-
-        for (int i = snowImpactEffects.size - 1; i >= 0; i--) {
-            ParticleEffectPool.PooledEffect effect = snowImpactEffects.get(i);
-            effect.draw(game.batch, delta);
-            if (effect.isComplete()) {
-                effect.free();
-                snowImpactEffects.removeValue(effect, true);
+        if (gameIsPlaying) {
+            // Draw snowflakes
+            for (SnowFlake snowFlake : snowFlakes) {
+                game.batch.draw(
+                        Assets.snowflake.getRegion(),
+                        snowFlake.x,
+                        snowFlake.y,
+                        snowFlake.width,
+                        snowFlake.height
+                );
             }
-        }
 
-        for (Rectangle drop : droplets) {
-            game.batch.draw(
-                    Assets.droplet.getRegion(),
-                    drop.x - 13,
-                    drop.y
-            );
-        }
-
-        for (int i = dropletImpactEffects.size - 1; i >= 0; i--) {
-            ParticleEffectPool.PooledEffect effect = dropletImpactEffects.get(i);
-            effect.draw(game.batch, delta);
-            if (effect.isComplete()) {
-                effect.free();
-                dropletImpactEffects.removeValue(effect, true);
+            // Draw snowflakes particules
+            for (int i = snowImpactEffects.size - 1; i >= 0; i--) {
+                ParticleEffectPool.PooledEffect effect = snowImpactEffects.get(i);
+                effect.draw(game.batch, delta);
+                if (effect.isComplete()) {
+                    effect.free();
+                    snowImpactEffects.removeValue(effect, true);
+                }
             }
+
+            // Draw Droplets
+            for (Rectangle drop : droplets) {
+                game.batch.draw(
+                        Assets.droplet.getRegion(),
+                        drop.x - 13,
+                        drop.y
+                );
+            }
+
+            // Draw droplets particules
+            for (int i = dropletImpactEffects.size - 1; i >= 0; i--) {
+                ParticleEffectPool.PooledEffect effect = dropletImpactEffects.get(i);
+                effect.draw(game.batch, delta);
+                if (effect.isComplete()) {
+                    effect.free();
+                    dropletImpactEffects.removeValue(effect, true);
+                }
+            }
+
+            // Draw monster
+            game.batch.draw(currentFrame, monster.x, monster.y - 6);
         }
 
-
-        game.batch.draw(currentFrame, monster.x, monster.y - 6);
         game.batch.end();
 
         uiStage.act(delta);
         uiStage.draw();
+
+        super.draw(delta);
+    }
+
+    private void loseLife() {
+        life--;
+
+        if (life <= 0) {
+            gameIsPlaying = false;
+            Integer score = Integer.valueOf(lblScore.getText().toString());
+
+            if (Settings.getBestScore() < score) {
+                Settings.setBestScore(score);
+            }
+
+            System.out.println("Game Over !");
+        }
+
+        life1.setVisible(life >= 1);
+        life2.setVisible(life >= 2);
+        life3.setVisible(life >= 3);
     }
 
     private void spawnDroplet() {
