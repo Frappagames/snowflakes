@@ -125,6 +125,8 @@ public class Assets {
     public static void dispose() {
         itemsAtlas.dispose();
         clickSound.dispose();
+        pickSound.dispose();
+        hitSound.dispose();
         music.dispose();
     }
 }
